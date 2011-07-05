@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/07/2011 16:02:59 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="LN.entity.Materiais" table="materiais" schema="public">
+        <id name="codmateriais" type="string">
+            <column name="codmateriais" />
+            <generator class="assigned" />
+        </id>
+        <property name="descricao" type="string">
+            <column name="descricao" length="150" />
+        </property>
+        <property name="qtdestoque" type="java.lang.Integer">
+            <column name="qtdestoque" />
+        </property>
+        <property name="qtdminima" type="java.lang.Integer">
+            <column name="qtdminima" />
+        </property>
+        <property name="valor" type="java.lang.Double">
+            <column name="valor" precision="17" scale="17" />
+        </property>
+        <property name="fornecedor" type="string">
+            <column name="fornecedor" length="150" />
+        </property>
+        <property name="datacadastro" type="date">
+            <column name="datacadastro" length="13" />
+        </property>
+        <property name="unidade" type="string">
+            <column name="unidade" length="30" />
+        </property>
+    </class>
+</hibernate-mapping>

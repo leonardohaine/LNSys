@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/07/2011 16:02:59 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="LN.entity.Usuarios" table="usuarios" schema="public">
+        <id name="codusuario" type="string">
+            <column name="codusuario" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="nome" type="string">
+            <column name="nome" length="80" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" length="10" />
+        </property>
+        <property name="checkprodutos" type="string">
+            <column name="checkprodutos" length="2" />
+        </property>
+        <property name="checkclientes" type="string">
+            <column name="checkclientes" length="2" />
+        </property>
+        <property name="checkfornecedores" type="string">
+            <column name="checkfornecedores" length="2" />
+        </property>
+        <property name="checkorcamentos" type="string">
+            <column name="checkorcamentos" length="2" />
+        </property>
+        <property name="checkrelatorios" type="string">
+            <column name="checkrelatorios" length="2" />
+        </property>
+        <property name="checkentradasaida" type="string">
+            <column name="checkentradasaida" length="2" />
+        </property>
+        <property name="checkusuarios" type="string">
+            <column name="checkusuarios" length="2" />
+        </property>
+    </class>
+</hibernate-mapping>

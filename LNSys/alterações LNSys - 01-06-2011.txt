@@ -1,0 +1,12 @@
+Dió diz:
+*Preciso das seguintes alterações no programa dos orçamentos
+
+*a qualidade do logo e nome da marcenaria está ruim -ok
+
+*a fonte do " n° do orçamento" esta diferente - ok
+
+*Na descrição do produto não quero tudo em maiusculo - ok
+
+*tem q alinhar os valores a direita - pendente
+
+*se der muda a cor da fonte verde para preto - ok

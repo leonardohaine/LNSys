@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/07/2011 16:02:59 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="LN.entity.MateriaisOrcamentos" table="materiais_orcamentos" schema="public">
+        <id name="codmateriais" type="int">
+            <column name="codmateriais" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="orcamentos" class="LN.entity.Orcamentos" fetch="select">
+            <column name="codmatorcamentos" length="15" />
+        </many-to-one>
+        <property name="quantidade" type="java.lang.Integer">
+            <column name="quantidade" />
+        </property>
+        <property name="unidade" type="string">
+            <column name="unidade" />
+        </property>
+        <property name="produto" type="string">
+            <column name="produto" length="3000" />
+        </property>
+        <property name="valorunitario" type="java.lang.Double">
+            <column name="valorunitario" precision="17" scale="17" />
+        </property>
+        <property name="valortotal" type="java.lang.Double">
+            <column name="valortotal" precision="17" scale="17" />
+        </property>
+        <property name="item" type="java.lang.Integer">
+            <column name="item" />
+        </property>
+    </class>
+</hibernate-mapping>

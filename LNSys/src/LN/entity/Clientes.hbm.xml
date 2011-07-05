@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/07/2011 16:02:59 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="LN.entity.Clientes" table="clientes" schema="public">
+        <id name="codcliente" type="int">
+            <column name="codcliente" />
+            <generator class="assigned" />
+        </id>
+        <property name="razaosocial" type="string">
+            <column name="razaosocial" not-null="true" />
+        </property>
+        <property name="fanatasia" type="string">
+            <column name="fanatasia" length="80" />
+        </property>
+        <property name="nomecontato" type="string">
+            <column name="nomecontato" length="80" />
+        </property>
+        <property name="endereco" type="string">
+            <column name="endereco" length="100" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="80" />
+        </property>
+        <property name="cep" type="string">
+            <column name="cep" length="9" />
+        </property>
+        <property name="cidade" type="string">
+            <column name="cidade" length="100" />
+        </property>
+        <property name="telefone" type="string">
+            <column name="telefone" length="13" />
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="13" />
+        </property>
+        <property name="datanascimento" type="date">
+            <column name="datanascimento" length="13" />
+        </property>
+        <property name="rg" type="string">
+            <column name="rg" length="15" />
+        </property>
+        <property name="cpf" type="string">
+            <column name="cpf" length="12" />
+        </property>
+        <property name="cnpj" type="string">
+            <column name="cnpj" length="20" />
+        </property>
+        <property name="inscricaoestadual" type="string">
+            <column name="inscricaoestadual" length="25" />
+        </property>
+        <property name="observacao" type="string">
+            <column name="observacao" />
+        </property>
+        <property name="datacadastro" type="date">
+            <column name="datacadastro" length="13" />
+        </property>
+        <set name="orcamentoses" inverse="true">
+            <key>
+                <column name="codcliente" />
+            </key>
+            <one-to-many class="LN.entity.Orcamentos" />
+        </set>
+    </class>
+</hibernate-mapping>

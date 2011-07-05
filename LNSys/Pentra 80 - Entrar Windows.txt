@@ -1,0 +1,4 @@
+apertar Shift para entrar no windows
+
+user Administrator
+pass admin

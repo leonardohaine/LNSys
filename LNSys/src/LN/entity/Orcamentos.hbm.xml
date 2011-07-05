@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/07/2011 16:02:59 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="LN.entity.Orcamentos" table="orcamentos" schema="public">
+        <id name="codorcamentos" type="string">
+            <column name="codorcamentos" length="15" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="clientes" class="LN.entity.Clientes" fetch="select">
+            <column name="codcliente" />
+        </many-to-one>
+        <property name="cliente" type="string">
+            <column name="cliente" length="80" />
+        </property>
+        <property name="ac" type="string">
+            <column name="ac" length="90" />
+        </property>
+        <property name="unidade" type="string">
+            <column name="unidade" length="80" />
+        </property>
+        <property name="solicitante" type="string">
+            <column name="solicitante" length="80" />
+        </property>
+        <property name="referente" type="string">
+            <column name="referente" length="80" />
+        </property>
+        <property name="observacoes" type="string">
+            <column name="observacoes" length="2000" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="3" />
+        </property>
+        <property name="datacadastro" type="date">
+            <column name="datacadastro" length="13" />
+        </property>
+        <property name="local" type="string">
+            <column name="local" length="80" />
+        </property>
+        <property name="pedido" type="string">
+            <column name="pedido" length="20" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="3000" />
+        </property>
+        <property name="prazoentrega" type="string">
+            <column name="prazoentrega" length="80" />
+        </property>
+        <property name="condicoespagamento" type="string">
+            <column name="condicoespagamento" length="80" />
+        </property>
+        <property name="validadeproposta" type="string">
+            <column name="validadeproposta" length="80" />
+        </property>
+        <set name="materiaisOrcamentoses" inverse="true">
+            <key>
+                <column name="codmatorcamentos" length="15" />
+            </key>
+            <one-to-many class="LN.entity.MateriaisOrcamentos" />
+        </set>
+    </class>
+</hibernate-mapping>
