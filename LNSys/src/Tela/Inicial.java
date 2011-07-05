@@ -196,7 +196,7 @@ public class Inicial extends javax.swing.JFrame {
         jButtonClientes.setBounds(300, 320, 190, 150);
         jDesktopPaneInicial.add(jButtonClientes, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonMateriais.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonMateriais.setFont(new java.awt.Font("Arial Black", 0, 14));
         jButtonMateriais.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/settings96.png"))); // NOI18N
         jButtonMateriais.setMnemonic('C');
         jButtonMateriais.setText("MATERIAIS");
@@ -286,7 +286,7 @@ public class Inicial extends javax.swing.JFrame {
         jButtonUsuarios.setBounds(520, 320, 190, 150);
         jDesktopPaneInicial.add(jButtonUsuarios, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonSair.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonSair.setFont(new java.awt.Font("Arial Black", 0, 14));
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit96.png"))); // NOI18N
         jButtonSair.setMnemonic('M');
         jButtonSair.setText("SAIR");
@@ -302,7 +302,7 @@ public class Inicial extends javax.swing.JFrame {
         jDesktopPaneInicial.add(jButtonSair, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sky Yellow", "Sky Red", "Sky Pink", "Sky Krupp", "Sky Green", "Sky Bluer", "Sky Blue", "Silver", "Light Gray", "Experience Royale", "Experience Green", "Experience Blue ", "Desert Yellow", "Desert Red", "Desert Green", "Desert Bluer", "Desert Blue ", "Dark Star", "Brown Sugar." }));
-        jComboBox1.setBounds(580, 20, 200, 20);
+        jComboBox1.setBounds(70, 60, 200, 20);
         jDesktopPaneInicial.add(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
