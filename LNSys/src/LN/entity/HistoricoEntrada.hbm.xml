@@ -1,33 +1,35 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 03/07/2011 16:02:59 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="LN.entity.HistoricoEntrada" table="historico_entrada" schema="public">
-        <id name="codhistorico" type="int">
-            <column name="codhistorico" />
-            <generator class="assigned" />
-        </id>
-        <property name="codmateriais" type="int">
-            <column name="codmateriais" not-null="true" />
-        </property>
-        <property name="descricao" type="string">
-            <column name="descricao" length="150" />
-        </property>
-        <property name="quantidade" type="java.lang.Integer">
-            <column name="quantidade" />
-        </property>
-        <property name="valor" type="java.lang.Double">
-            <column name="valor" precision="17" scale="17" />
-        </property>
-        <property name="dataentrada" type="date">
-            <column name="dataentrada" length="13" />
-        </property>
-        <property name="status" type="string">
-            <column name="status" length="10" />
-        </property>
-        <property name="total" type="java.lang.Double">
-            <column name="total" precision="17" scale="17" />
-        </property>
-    </class>
+  <class name="LN.entity.HistoricoEntrada" schema="public" table="historico_entrada">
+    <id name="codhistorico" type="int">
+      <column name="codhistorico"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="codmateriais" type="int">
+      <column name="codmateriais" not-null="true"/>
+    </property>
+    <property name="descricao" type="string">
+      <column length="150" name="descricao"/>
+    </property>
+    <property name="quantidade" type="java.lang.Integer">
+      <column name="quantidade"/>
+    </property>
+    <property name="valor" type="java.lang.Double">
+      <column name="valor" precision="17" scale="17"/>
+    </property>
+    <property name="dataentrada" type="date">
+      <column length="13" name="dataentrada"/>
+    </property>
+    <property name="status" type="string">
+      <column length="10" name="status"/>
+    </property>
+    <property name="total" type="java.lang.Double">
+      <column name="total" precision="17" scale="17"/>
+    </property>
+    <property name="usuario" type="string">
+      <column length="10" name="usuario"/>
+    </property>
+  </class>
 </hibernate-mapping>

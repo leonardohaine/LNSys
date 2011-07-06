@@ -14,10 +14,10 @@ package Tela;
 
 import com.jgoodies.looks.plastic.PlasticLookAndFeel;
 import com.jgoodies.looks.plastic.PlasticXPLookAndFeel;
-import com.jgoodies.looks.plastic.theme.DarkStar;
-import com.jgoodies.looks.plastic.theme.DesertRed;
-import com.jgoodies.looks.plastic.theme.ExperienceGreen;
+import com.jgoodies.looks.plastic.theme.*;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -81,7 +81,7 @@ public class Inicial extends javax.swing.JFrame {
             //            Dimension centraliza = Toolkit.getDefaultToolkit().getScreenSize();
             //            jButtonNovoOrcamento.setLocation((centraliza.width-instancia.getSize().width)/2,
             //                      (centraliza.height-instancia.getSize().height)/2);
-            // testando de novo
+            // 
         } catch (InterruptedException ex) {
             Logger.getLogger(Inicial.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -99,19 +99,16 @@ public class Inicial extends javax.swing.JFrame {
 
             jDesktopPaneInicial.setBackground(Color.black);
 //Sky Yellow, Sky Red, Sky Pink, Sky Krupp, Sky Green, Sky Bluer, Sky Blue, Silver,
-            //Light Gray, Experience Royale, Experience Green, Experience Blue, 
-                    //Desert Yellow, Desert Red, Desert Green, Desert Bluer, Desert Blue, 
-                    //Dark Star e Brown Sugar.
+//Light Gray, Experience Royale, Experience Green, Experience Blue, 
+//Desert Yellow, Desert Red, Desert Green, Desert Bluer, Desert Blue, 
+//Dark Star e Brown Sugar.
 
-
-
-            PlasticLookAndFeel.setPlasticTheme(new ExperienceGreen());
-            try {
-                UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
-            } catch (UnsupportedLookAndFeelException ex) {
-                ex.printStackTrace();
-            }
-
+//            PlasticLookAndFeel.setPlasticTheme(new DarkStar());
+//            try {
+//                UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+//            } catch (UnsupportedLookAndFeelException ex) {
+//                ex.printStackTrace();
+//            }
 
         try{
             //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -157,7 +154,7 @@ public class Inicial extends javax.swing.JFrame {
         jButtonRelatorioHistorico = new javax.swing.JButton();
         jButtonUsuarios = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBoxSkin = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LIRA & NOBRE ARTEFATOS DE MADEIRA - SOLUÇÕES EM MÓVEIS SOB MEDIDA");
@@ -301,9 +298,14 @@ public class Inicial extends javax.swing.JFrame {
         jButtonSair.setBounds(740, 490, 190, 150);
         jDesktopPaneInicial.add(jButtonSair, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sky Yellow", "Sky Red", "Sky Pink", "Sky Krupp", "Sky Green", "Sky Bluer", "Sky Blue", "Silver", "Light Gray", "Experience Royale", "Experience Green", "Experience Blue ", "Desert Yellow", "Desert Red", "Desert Green", "Desert Bluer", "Desert Blue ", "Dark Star", "Brown Sugar." }));
-        jComboBox1.setBounds(70, 60, 200, 20);
-        jDesktopPaneInicial.add(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jComboBoxSkin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar Skin", "Windows Classic", "Windows", "Motif", "Metal", "Nimbus", "Brown Sugar", "Dark Star", "Desert Blue", "Desert Bluer", "Desert Green", "Desert Red", "Desert Yellow", "Experience Blue ", "Experience Green", "Experience Royale", "Light Gray", "Silver", "Sky Blue", "Sky Bluer", "Sky Green", "Sky Krupp", "Sky Pink", "Sky Red", "Sky Yellow" }));
+        jComboBoxSkin.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxSkinItemStateChanged(evt);
+            }
+        });
+        jComboBoxSkin.setBounds(510, 10, 190, 20);
+        jDesktopPaneInicial.add(jComboBoxSkin, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -525,6 +527,253 @@ public class Inicial extends javax.swing.JFrame {
         System.exit(1);
     }//GEN-LAST:event_jButtonSairActionPerformed
 
+
+
+    private void jComboBoxSkinItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxSkinItemStateChanged
+//Sky Yellow, Sky Red, Sky Pink, Sky Krupp, Sky Green, Sky Bluer, Sky Blue, Silver,
+//Light Gray, Experience Royale, Experience Green, Experience Blue, 
+//Desert Yellow, Desert Red, Desert Green, Desert Bluer, Desert Blue, 
+//Dark Star e Brown Sugar.
+
+        if ((evt.getStateChange() == 1)) {
+          
+            if(jComboBoxSkin.getSelectedItem().equals("Dark Star")){
+
+                PlasticLookAndFeel.setPlasticTheme(new DarkStar());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Brown Sugar")) {
+                PlasticLookAndFeel.setPlasticTheme(new BrownSugar());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Desert Blue")) {
+                PlasticLookAndFeel.setPlasticTheme(new DesertBlue());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Desert Bluer")) {
+                PlasticLookAndFeel.setPlasticTheme(new DesertBluer());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Desert Green")) {
+                PlasticLookAndFeel.setPlasticTheme(new DesertGreen());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Desert Red")) {
+                PlasticLookAndFeel.setPlasticTheme(new DesertRed());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Desert Yellow")) {
+                PlasticLookAndFeel.setPlasticTheme(new DesertYellow());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Experience Blue")) {
+                PlasticLookAndFeel.setPlasticTheme(new ExperienceBlue());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Experience Green")) {
+                PlasticLookAndFeel.setPlasticTheme(new ExperienceGreen());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Experience Royale")) {
+                PlasticLookAndFeel.setPlasticTheme(new ExperienceRoyale());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Light Gray")) {
+                PlasticLookAndFeel.setPlasticTheme(new LightGray());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Silver")) {
+                PlasticLookAndFeel.setPlasticTheme(new Silver());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Sky Blue")) {
+                PlasticLookAndFeel.setPlasticTheme(new SkyBlue());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Sky Bluer")) {
+                PlasticLookAndFeel.setPlasticTheme(new SkyBluer());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Sky Green")) {
+                PlasticLookAndFeel.setPlasticTheme(new SkyGreen());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Sky Krupp")) {
+                PlasticLookAndFeel.setPlasticTheme(new SkyKrupp());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Sky Pink")) {
+                PlasticLookAndFeel.setPlasticTheme(new SkyPink());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Sky Red")) {
+                PlasticLookAndFeel.setPlasticTheme(new SkyRed());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Sky Yellow")) {
+                PlasticLookAndFeel.setPlasticTheme(new SkyYellow());
+                try{
+                    UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    new Inicial().pack();
+                }catch (UnsupportedLookAndFeelException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro Look And Feel:" + ex);
+                }
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Metal")) {
+               mudaLookAndFeel(0);
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Nimbus")) {
+                mudaLookAndFeel(1);
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Motif")) {
+                mudaLookAndFeel(2);
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Windows")) {
+                mudaLookAndFeel(3);
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("Windows Classic")) {
+                mudaLookAndFeel(4);
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }else if (jComboBoxSkin.getSelectedItem().equals("5")) {
+                mudaLookAndFeel(5);
+                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            }
+            JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+        }
+    }//GEN-LAST:event_jComboBoxSkinItemStateChanged
+private javax.swing.UIManager.LookAndFeelInfo looks[];
+
+
+    public void mudaLookAndFeel(int index) {
+        looks = javax.swing.UIManager.getInstalledLookAndFeels();
+        try {
+            javax.swing.UIManager.setLookAndFeel( looks[index].getClassName());
+            System.out.println("Look "+ looks[index].getName());
+            javax.swing.SwingUtilities.updateComponentTreeUI( this );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public static String unidade = System.getProperty("user.home").substring( 0 ,2 );
 
     public boolean isNumeric (String codigo) {
@@ -652,7 +901,7 @@ public class Inicial extends javax.swing.JFrame {
                   if(Login.relatorio.equals("S")){jButtonRelatorioHistorico.setVisible(true);
                         }else{jButtonRelatorioHistorico.setVisible(false); }
 
-                  if(Login.usuarios.equals("S")){jButtonUsuarios.setVisible(true);
+                  if(Login.telaUsuarios.equals("S")){jButtonUsuarios.setVisible(true);
                         }else{jButtonUsuarios.setVisible(false); }
 
                   if(Login.orcamentos.equals("S")){jButtonNovoOrcamento.setVisible(true);
@@ -661,7 +910,7 @@ public class Inicial extends javax.swing.JFrame {
                   if(Login.entradaSaida.equals("S")){jButtonEntradaSaida.setVisible(true);
                         }else{jButtonEntradaSaida.setVisible(false); }
 
-                  System.out.println("Verificando Usuarios");
+                  //System.out.println("Verificando Usuarios");
                   try{
                     sleep(1000);
                     //faz a thread entrar em estado de espera por 1000 milissegundos ou 1 segundo
@@ -703,7 +952,7 @@ public class Inicial extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRelatorioHistorico;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonUsuarios;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBoxSkin;
     private javax.swing.JDesktopPane jDesktopPaneInicial;
     // End of variables declaration//GEN-END:variables
 

@@ -29,7 +29,7 @@ public class Login extends javax.swing.JDialog {
     public static String relatorio = "S";
     public static String entradaSaida = "S";
     public static String produtos = "S";
-    public static String usuarios = "S";
+    public static String telaUsuarios = "S";
     public static String login = "S";
     /** Creates new form Login */
     public Login(java.awt.Frame parent, boolean modal) {
@@ -220,31 +220,31 @@ private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             //MateriaisOrcamentos matOrca = new MateriaisOrcamentos();
             //System.out.println("MAT ->"+ matOrca.getProduto());
 
-            while (i.hasNext()) {
+            if (ListUsuario.size() < 0) {
 
                 Usuarios usuarios = (Usuarios) i.next();
 
                 if(!ListUsuario.isEmpty()){
                     System.out.println("login "+ usuarios.getCodusuario()+"-"+ usuarios.getNome());
-                    this.user = usuarios.getCodusuario()+"-"+ usuarios.getNome();
-                    this.usuarios = usuarios.getCheckusuarios();
-                    this.clientes = usuarios.getCheckclientes();
-                    this.fornecedores = usuarios.getCheckfornecedores();
-                    this.produtos = usuarios.getCheckprodutos();
-                    this.relatorio = usuarios.getCheckrelatorios();
-                    this.entradaSaida = usuarios.getCheckentradasaida();
-                    this.orcamentos = usuarios.getCheckorcamentos();
+                    Login.user = usuarios.getCodusuario()+"-"+ usuarios.getNome();
+                    Login.telaUsuarios = usuarios.getCheckusuarios();
+                    Login.clientes = usuarios.getCheckclientes();
+                    Login.fornecedores = usuarios.getCheckfornecedores();
+                    Login.produtos = usuarios.getCheckprodutos();
+                    Login.relatorio = usuarios.getCheckrelatorios();
+                    Login.entradaSaida = usuarios.getCheckentradasaida();
+                    Login.orcamentos = usuarios.getCheckorcamentos();
 
                     dispose();
                 }else{
                     JOptionPane.showMessageDialog(this, "Nome ou senha não conferem!!!", "Aviso", JOptionPane.WARNING_MESSAGE);
-                    return ;
+                    return;
                 }
            }
 
 
     //
-//  String nome = jTextFieldUsuario.getText().toUpperCase();
+  String nome2 = jTextFieldUsuario.getText().toUpperCase();
 //    String senha = jPasswordFieldSenha.getText().toUpperCase();
 //
 //        if ( nome.equals("")==true || senha .equals("")==true ){

@@ -18,6 +18,7 @@ public class HistoricoEntrada  implements java.io.Serializable {
      private Date dataentrada;
      private String status;
      private Double total;
+     private String usuario;
 
     public HistoricoEntrada() {
     }
@@ -93,6 +94,20 @@ public class HistoricoEntrada  implements java.io.Serializable {
     
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public String getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
 

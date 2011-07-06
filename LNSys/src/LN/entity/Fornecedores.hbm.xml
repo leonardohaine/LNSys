@@ -1,51 +1,50 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 03/07/2011 16:02:59 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="LN.entity.Fornecedores" table="fornecedores" schema="public">
-        <id name="codfornecedor" type="int">
-            <column name="codfornecedor" />
-            <generator class="assigned" />
-        </id>
-        <property name="fornecedor" type="string">
-            <column name="fornecedor" not-null="true" />
-        </property>
-        <property name="endereco" type="string">
-            <column name="endereco" length="100" />
-        </property>
-        <property name="bairro" type="string">
-            <column name="bairro" length="80" />
-        </property>
-        <property name="cep" type="string">
-            <column name="cep" length="9" />
-        </property>
-        <property name="cidade" type="string">
-            <column name="cidade" length="100" />
-        </property>
-        <property name="vendedor" type="string">
-            <column name="vendedor" length="80" />
-        </property>
-        <property name="email" type="string">
-            <column name="email" length="100" />
-        </property>
-        <property name="telefone" type="string">
-            <column name="telefone" length="13" />
-        </property>
-        <property name="celular" type="string">
-            <column name="celular" length="13" />
-        </property>
-        <property name="telefonevendedor" type="string">
-            <column name="telefonevendedor" length="13" />
-        </property>
-        <property name="cnpj" type="string">
-            <column name="cnpj" length="20" />
-        </property>
-        <property name="observacao" type="string">
-            <column name="observacao" />
-        </property>
-        <property name="datacadastro" type="date">
-            <column name="datacadastro" length="13" />
-        </property>
-    </class>
+  <class name="LN.entity.Fornecedores" schema="public" table="fornecedores">
+    <id name="codfornecedor" type="int">
+      <column name="codfornecedor"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="fornecedor" type="string">
+      <column name="fornecedor" not-null="true"/>
+    </property>
+    <property name="endereco" type="string">
+      <column length="100" name="endereco"/>
+    </property>
+    <property name="bairro" type="string">
+      <column length="80" name="bairro"/>
+    </property>
+    <property name="cep" type="string">
+      <column length="9" name="cep"/>
+    </property>
+    <property name="cidade" type="string">
+      <column length="100" name="cidade"/>
+    </property>
+    <property name="vendedor" type="string">
+      <column length="80" name="vendedor"/>
+    </property>
+    <property name="email" type="string">
+      <column length="100" name="email"/>
+    </property>
+    <property name="telefone" type="string">
+      <column length="13" name="telefone"/>
+    </property>
+    <property name="celular" type="string">
+      <column length="13" name="celular"/>
+    </property>
+    <property name="telefonevendedor" type="string">
+      <column length="13" name="telefonevendedor"/>
+    </property>
+    <property name="cnpj" type="string">
+      <column length="20" name="cnpj"/>
+    </property>
+    <property name="observacao" type="string">
+      <column name="observacao"/>
+    </property>
+    <property name="datacadastro" type="date">
+      <column length="13" name="datacadastro"/>
+    </property>
+  </class>
 </hibernate-mapping>

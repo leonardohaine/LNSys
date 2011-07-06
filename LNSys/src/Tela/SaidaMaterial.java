@@ -71,7 +71,7 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
         setFrameIcon(new ImageIcon(this.getClass().getClassLoader().getResource("imagens/IconeLN.png")));
 
          Dimension centraliza = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation((centraliza.width-this.getSize().width)/2,
+         this.setLocation((centraliza.width-this.getSize().width)/2,
                       (centraliza.height-this.getSize().height)/2-30);
 
             //fabricaDeSessoes = new Configuration().configure().buildSessionFactory();
@@ -238,8 +238,8 @@ int m = (Integer) table.getValueAt(row, 4);
         jTableMateriais.getColumnModel().getColumn(0).setPreferredWidth(60); //codigo
         jTableMateriais.getColumnModel().getColumn(0).setMinWidth(60);
         //jTableMateriais.getColumnModel().getColumn(0).setMaxWidth(30);
-        jTableMateriais.getColumnModel().getColumn(1).setPreferredWidth(295);//descricao
-        jTableMateriais.getColumnModel().getColumn(1).setMinWidth(295);
+        jTableMateriais.getColumnModel().getColumn(1).setPreferredWidth(280);//descricao
+        jTableMateriais.getColumnModel().getColumn(1).setMinWidth(280);
         jTableMateriais.getColumnModel().getColumn(2).setPreferredWidth(75);//85 Unid
         jTableMateriais.getColumnModel().getColumn(2).setMinWidth(75);
          jTableMateriais.getColumnModel().getColumn(3).setPreferredWidth(75);//85 QUANT estoque
@@ -248,8 +248,8 @@ int m = (Integer) table.getValueAt(row, 4);
         jTableMateriais.getColumnModel().getColumn(4).setMinWidth(75);
         jTableMateriais.getColumnModel().getColumn(5).setPreferredWidth(85);//265 valor
         jTableMateriais.getColumnModel().getColumn(5).setMinWidth(85);
-        jTableMateriais.getColumnModel().getColumn(6).setPreferredWidth(150);//105 fornecedor
-        jTableMateriais.getColumnModel().getColumn(6).setMinWidth(150);
+        jTableMateriais.getColumnModel().getColumn(6).setPreferredWidth(140);//105 fornecedor
+        jTableMateriais.getColumnModel().getColumn(6).setMinWidth(140);
         jTableMateriais.getColumnModel().getColumn(7).setPreferredWidth(100);//85 data
         jTableMateriais.getColumnModel().getColumn(7).setMinWidth(100);
 
@@ -334,6 +334,7 @@ int m = (Integer) table.getValueAt(row, 4);
         jTableMateriais = new javax.swing.JTable();
         jLabelRetorno = new javax.swing.JLabel();
 
+        setClosable(true);
         setTitle("LISTA DE MATERIAIS - ENTRADA E SAÍDA");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -463,7 +464,7 @@ int m = (Integer) table.getValueAt(row, 4);
 
         jTableMateriais.setAutoCreateRowSorter(true);
         jTableMateriais.setBackground(new java.awt.Color(0, 121, 76));
-        jTableMateriais.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jTableMateriais.setFont(new java.awt.Font("Arial", 1, 12));
         jTableMateriais.setForeground(new java.awt.Color(255, 255, 255));
         jTableMateriais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -525,7 +526,7 @@ int m = (Integer) table.getValueAt(row, 4);
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
