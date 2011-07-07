@@ -38,8 +38,8 @@ public class ConfirmaSaida extends javax.swing.JDialog {
     public ConfirmaSaida(java.awt.Frame parent, boolean modal, String cod, String desc, Double dinheiro, int qtd) throws SQLException, ClassNotFoundException {
         super(parent, modal);
         initComponents();
-        
-        this.setLocation(580, 505);
+        this.setLocationRelativeTo(null);
+        //this.setLocation(580, 505);
         
         //ImageIcon icone = new ImageIcon(this.getClass().getClassLoader().getResource("imagens/iconeLN.png"));
         //setIconImage(icone.getImage());

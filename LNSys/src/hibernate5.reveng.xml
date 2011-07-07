@@ -8,5 +8,4 @@
   <table-filter match-name="materiais_orcamentos"/>
   <table-filter match-name="historico_entrada"/>
   <table-filter match-name="fornecedores"/>
-  <table-filter match-name="usuarios"/>
 </hibernate-reverse-engineering>

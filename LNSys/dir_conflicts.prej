@@ -1,0 +1,7 @@
+Tentando adicionar nova propriedade 'svn:ignore' com valor 'build
+dist
+.cvsignore
+',
+mas a propriedade j?\195?\161 existe com valor 'build
+dist
+'.

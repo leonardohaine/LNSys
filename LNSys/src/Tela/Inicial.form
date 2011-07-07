@@ -253,6 +253,7 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBoxSkin">
           <Properties>
+            <Property name="maximumRowCount" type="int" value="30"/>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="25">
                 <StringItem index="0" value="Selecionar Skin"/>
@@ -288,7 +289,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="510" y="10" width="190" height="-1" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="10" y="10" width="130" height="-1" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>

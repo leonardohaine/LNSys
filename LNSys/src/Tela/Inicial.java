@@ -12,16 +12,16 @@
 package Tela;
 
 
+import LN.entity.Usuarios;
 import com.jgoodies.looks.plastic.PlasticLookAndFeel;
 import com.jgoodies.looks.plastic.PlasticXPLookAndFeel;
 import com.jgoodies.looks.plastic.theme.*;
 import java.awt.Color;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -55,6 +55,8 @@ public class Inicial extends javax.swing.JFrame {
     public static String IP = null;
     public static String USUARIO = null;
     public static String SENHA = null;
+    public static String USER = null;
+    public static String LOGIN = null;
     private static Properties config = new Properties();
     public static String ini = "/windows/LNSys.ini";
     /** Creates new form Inicial */
@@ -70,6 +72,7 @@ public class Inicial extends javax.swing.JFrame {
             //        jButtonRelatorioHistorico.setVisible(false);
             //        jButtonUsuarios.setVisible(false);
             //try {
+            jComboBoxSkin.setVisible(false);
             iniciaLogin();
             //            Dimension centraliza = Toolkit.getDefaultToolkit().getScreenSize();
             //            jButtonNovoOrcamento.setLocation((centraliza.width-instancia.getSize().width)/2,
@@ -298,13 +301,14 @@ public class Inicial extends javax.swing.JFrame {
         jButtonSair.setBounds(740, 490, 190, 150);
         jDesktopPaneInicial.add(jButtonSair, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jComboBoxSkin.setMaximumRowCount(30);
         jComboBoxSkin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar Skin", "Windows Classic", "Windows", "Motif", "Metal", "Nimbus", "Brown Sugar", "Dark Star", "Desert Blue", "Desert Bluer", "Desert Green", "Desert Red", "Desert Yellow", "Experience Blue ", "Experience Green", "Experience Royale", "Light Gray", "Silver", "Sky Blue", "Sky Bluer", "Sky Green", "Sky Krupp", "Sky Pink", "Sky Red", "Sky Yellow" }));
         jComboBoxSkin.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxSkinItemStateChanged(evt);
             }
         });
-        jComboBoxSkin.setBounds(510, 10, 190, 20);
+        jComboBoxSkin.setBounds(10, 10, 130, 20);
         jDesktopPaneInicial.add(jComboBoxSkin, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -524,7 +528,7 @@ public class Inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonUsuariosActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        System.exit(1);
+        System.exit(0);
     }//GEN-LAST:event_jButtonSairActionPerformed
 
 
@@ -751,11 +755,8 @@ public class Inicial extends javax.swing.JFrame {
             }else if (jComboBoxSkin.getSelectedItem().equals("Windows Classic")) {
                 mudaLookAndFeel(4);
                 //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
-            }else if (jComboBoxSkin.getSelectedItem().equals("5")) {
-                mudaLookAndFeel(5);
-                //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
             }
-            JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
+            //JOptionPane.showMessageDialog(null,"Skin Alterado para " + (String) jComboBoxSkin.getSelectedItem());
         }
     }//GEN-LAST:event_jComboBoxSkinItemStateChanged
 private javax.swing.UIManager.LookAndFeelInfo looks[];
@@ -768,7 +769,6 @@ private javax.swing.UIManager.LookAndFeelInfo looks[];
             System.out.println("Look "+ looks[index].getName());
             javax.swing.SwingUtilities.updateComponentTreeUI( this );
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -837,48 +837,59 @@ private javax.swing.UIManager.LookAndFeelInfo looks[];
         BASE64Decoder decoder = new BASE64Decoder();
         config.load(new FileInputStream(unidade+ini));
         System.out.println("Iniciando processo de leitura de configurações: ");
+       
+
+        String database = config.getProperty("DATABASE");
+        String ip = config.getProperty("IP");
+        String usuario = config.getProperty("USUARIO");
+        String senha = config.getProperty("SENHA");
+        if(!config.containsKey("LOGIN")){
+
+
+            FileWriter leitor = new FileWriter(unidade+ini, true);
+            leitor.write("LOGIN="+ JOptionPane.showInputDialog("Tela de Login", "S"));
+            leitor.flush();
+            leitor.close();
+            System.out.println("ADD Tag LOGIN");
+        }
+        String login = config.getProperty("LOGIN");
+
         System.out.println();
         System.out.println(config.getProperty("DATABASE"));
         System.out.println(config.getProperty("IP"));
         System.out.println(config.getProperty("USUARIO"));
         System.out.println(config.getProperty("SENHA"));
+        System.out.println(config.getProperty("LOGIN"));
         System.out.println();
 
-            String database = config.getProperty("DATABASE");
-            String ip = config.getProperty("IP");
-            String usuario = config.getProperty("USUARIO");
-            String senha = config.getProperty("SENHA");
-
-
-
             //if(database.equals("null") || database == null || ip.equals("null") || ip == null || usuario.equals("null") || usuario == null || senha.equals("null") || senha == null){
-            if(ip == null){
-                JOptionPane.showMessageDialog(null,
-                   "O arquivo de configuração está em branco ou faltando parâmetros.", "Erro",
-                   JOptionPane.ERROR_MESSAGE);
-                   System.out.println("BRANCOOOOOO");
-                return ok = false;
-            }else{
-                DATABASE = database;
-                IP = ip;
-                USUARIO = new String(decoder.decodeBuffer(usuario));
-                SENHA = new String(decoder.decodeBuffer(senha));
+        if(ip == null){
+            JOptionPane.showMessageDialog(null,
+               "O arquivo de configuração está em branco ou faltando parâmetros.", "Erro",
+               JOptionPane.ERROR_MESSAGE);
+               
+            return ok = false;
+        }else{
+            DATABASE = database;
+            IP = ip;
+            USUARIO = new String(decoder.decodeBuffer(usuario));
+            SENHA = new String(decoder.decodeBuffer(senha));
+            LOGIN = login;
 
-
-                Configuration configuration = new Configuration();
+            Configuration configuration = new Configuration();
 //                configuration.configure("hibernate.cfg.xml");
-                configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-                configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://"+IP+"/"+ DATABASE);
-                configuration.setProperty("hibernate.connection.username", USUARIO);
-                configuration.setProperty("hibernate.connection.password", SENHA);
-                configuration.mergeProperties(config);
-                configuration.getProperties();
+            configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+            configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://"+IP+"/"+ DATABASE);
+            configuration.setProperty("hibernate.connection.username", USUARIO);
+            configuration.setProperty("hibernate.connection.password", SENHA);
+            configuration.mergeProperties(config);
+            configuration.getProperties();
 
-                System.out.println("DATABASE: "+ DATABASE+"\nIP: "+IP+"\nUser: "+ USUARIO+"\nSENHA: "+senha);
-                System.out.println("URL: "+ configuration.getProperty("hibernate.connection.url"));
-                System.out.println("Finalizando leitura!");
-                return  ok = true;
-            }
+            System.out.println("DATABASE: "+ DATABASE+"\nIP: "+IP+"\nUser: "+ USUARIO+"\nSENHA: "+senha);
+            System.out.println("URL: "+ configuration.getProperty("hibernate.connection.url"));
+            System.out.println("Finalizando leitura!");
+            return  ok = true;
+        }
 
 }
 
@@ -916,7 +927,7 @@ private javax.swing.UIManager.LookAndFeelInfo looks[];
                     //faz a thread entrar em estado de espera por 1000 milissegundos ou 1 segundo
                   }catch (Exception e){}
             }
-
+        
     }
 
     }.start();//inicia a thread.
@@ -934,9 +945,10 @@ private javax.swing.UIManager.LookAndFeelInfo looks[];
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Inicial().setVisible(true);
-                new Login().setModal(true);
-               // new Login().setVisible(true);
-
+                if(LOGIN == null ? "S" == null : LOGIN.equals("S")){
+                    new Login().setModal(true);
+                    new Login().setVisible(true);
+                }
             }
         });
        

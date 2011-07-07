@@ -253,8 +253,8 @@ int m = (Integer) table.getValueAt(row, 4);
         jTableMateriais.getColumnModel().getColumn(7).setPreferredWidth(100);//85 data
         jTableMateriais.getColumnModel().getColumn(7).setMinWidth(100);
 
-        jTableMateriais.getColumnModel().getColumn(8).setPreferredWidth(22);//21 status
-        jTableMateriais.getColumnModel().getColumn(8).setMinWidth(22);
+        jTableMateriais.getColumnModel().getColumn(8).setPreferredWidth(24);//21 status
+        jTableMateriais.getColumnModel().getColumn(8).setMinWidth(24);
         //jTableMaterial.getColumnModel().getColumn(5).setPreferredWidth(0);//COR
         //jTableResultado.getColumnModel().getColumn(6).setPreferredWidth(60);//DINHEIRO
         //jTableMaterial.getColumnModel().getColumn(6).setPreferredWidth(45);//QTD

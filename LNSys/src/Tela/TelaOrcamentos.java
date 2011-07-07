@@ -597,8 +597,10 @@ public class TelaOrcamentos extends javax.swing.JInternalFrame {
                 .addComponent(Retorno, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jListOrcamento.setBackground(new java.awt.Color(0, 121, 76));
+        jListOrcamento.setForeground(new java.awt.Color(255, 255, 255));
         jListOrcamento.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jListOrcamento.setSelectionBackground(new java.awt.Color(0, 121, 76));
+        jListOrcamento.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jListOrcamento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jListOrcamentoMouseClicked(evt);
@@ -1039,7 +1041,7 @@ public class TelaOrcamentos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1))
                     .addComponent(jPanelDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

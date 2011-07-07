@@ -161,7 +161,7 @@ public class Registro extends javax.swing.JDialog {
             BufferedWriter out =new BufferedWriter(leitor);
             BASE64Encoder encoder = new BASE64Encoder();
                 //System.out.println("newREG "+new String(encoder.encode(texto.getBytes())));
-                out.write("[SysPonto]");
+                out.write("[LNSys]");
                 out.newLine();
                 out.write("DATABASE="+database);
                 out.newLine();
@@ -170,6 +170,8 @@ public class Registro extends javax.swing.JDialog {
                 out.write("USUARIO="+new String(encoder.encode(usuario.getBytes())));
                 out.newLine();
                 out.write("SENHA="+new String(encoder.encode(senha.getBytes())));
+                out.newLine();
+                out.write("LOGIN=N");
                 
                // out.write(new String(encoder.encode(texto.getBytes())));
                 out.newLine();

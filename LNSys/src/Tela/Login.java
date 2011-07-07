@@ -187,13 +187,13 @@ public class Login extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jTextFieldUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioFocusGained
-    jTextFieldUsuario.setBackground(Color.GRAY);
-    jTextFieldUsuario.setForeground(Color.white);
+//    jTextFieldUsuario.setBackground(Color.GRAY);
+//    jTextFieldUsuario.setForeground(Color.white);
 }//GEN-LAST:event_jTextFieldUsuarioFocusGained
 
 private void jTextFieldUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioFocusLost
-    jTextFieldUsuario.setBackground(Color.WHITE);
-    jTextFieldUsuario.setForeground(Color.BLACK);
+//    jTextFieldUsuario.setBackground(Color.WHITE);
+//    jTextFieldUsuario.setForeground(Color.BLACK);
     //jTextFieldUsuario.setForeground(new java.awt.Color(0, 0, 0));
 }//GEN-LAST:event_jTextFieldUsuarioFocusLost
 
@@ -202,6 +202,7 @@ private void jButtonOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jButtonOutActionPerformed
 
 private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
+
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         Transaction transacao = sessao.beginTransaction();
 
@@ -219,12 +220,12 @@ private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         System.out.println("List Us: "+ ListUsuario );
             //MateriaisOrcamentos matOrca = new MateriaisOrcamentos();
             //System.out.println("MAT ->"+ matOrca.getProduto());
-
-            if (ListUsuario.size() < 0) {
+        if(!ListUsuario.isEmpty()){
+            while(i.hasNext()) {
 
                 Usuarios usuarios = (Usuarios) i.next();
 
-                if(!ListUsuario.isEmpty()){
+
                     System.out.println("login "+ usuarios.getCodusuario()+"-"+ usuarios.getNome());
                     Login.user = usuarios.getCodusuario()+"-"+ usuarios.getNome();
                     Login.telaUsuarios = usuarios.getCheckusuarios();
@@ -234,13 +235,15 @@ private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     Login.relatorio = usuarios.getCheckrelatorios();
                     Login.entradaSaida = usuarios.getCheckentradasaida();
                     Login.orcamentos = usuarios.getCheckorcamentos();
-
+                    Inicial.USER = user;
                     dispose();
-                }else{
-                    JOptionPane.showMessageDialog(this, "Nome ou senha não conferem!!!", "Aviso", JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
-           }
+
+            }
+        }else{
+           JOptionPane.showMessageDialog(this, "Nome ou senha não conferem!!!", "Aviso", JOptionPane.WARNING_MESSAGE);
+           return;
+        }
+
 
 
     //
@@ -307,7 +310,49 @@ private void jTextFieldUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIR
 }//GEN-LAST:event_jTextFieldUsuarioKeyPressed
 
 private void jPasswordFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaKeyPressed
-//    String nome = jTextFieldUsuario.getText().toUpperCase();
+    if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
+        Session sessao = HibernateUtil.getSessionFactory().openSession();
+        Transaction transacao = sessao.beginTransaction();
+
+        String nome = jTextFieldUsuario.getText().toUpperCase();
+        String senha = jPasswordFieldSenha.getText().toUpperCase();
+
+        Query loginUsuario = sessao.createQuery("from Usuarios as u where u.nome = '"+nome+"' and u.senha = '"+senha+"' ");
+
+        //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
+        List ListUsuario = loginUsuario.list();
+        //List materiais = consultaMat.list();
+        //System.out.println("foram encontradas "+orcamentos.size()+" orcamentos");
+        Iterator i = ListUsuario.iterator();
+
+        System.out.println("List Us: "+ ListUsuario );
+            //MateriaisOrcamentos matOrca = new MateriaisOrcamentos();
+            //System.out.println("MAT ->"+ matOrca.getProduto());
+        if(!ListUsuario.isEmpty()){
+            while(i.hasNext()) {
+
+                Usuarios usuarios = (Usuarios) i.next();
+
+                
+                    System.out.println("login "+ usuarios.getCodusuario()+"-"+ usuarios.getNome());
+                    Login.user = usuarios.getCodusuario()+"-"+ usuarios.getNome();
+                    Login.telaUsuarios = usuarios.getCheckusuarios();
+                    Login.clientes = usuarios.getCheckclientes();
+                    Login.fornecedores = usuarios.getCheckfornecedores();
+                    Login.produtos = usuarios.getCheckprodutos();
+                    Login.relatorio = usuarios.getCheckrelatorios();
+                    Login.entradaSaida = usuarios.getCheckentradasaida();
+                    Login.orcamentos = usuarios.getCheckorcamentos();
+                    Inicial.USER = user;
+                    dispose();
+               
+            }
+        }else{
+           JOptionPane.showMessageDialog(this, "Nome ou senha não conferem!!!", "Aviso", JOptionPane.WARNING_MESSAGE);
+           return;
+        }
+
+    //    String nome = jTextFieldUsuario.getText().toUpperCase();
 //    String senha = jPasswordFieldSenha.getText();
 //    if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
 //        if ( nome.equals("")==true || senha .equals("")==true ){
@@ -361,17 +406,17 @@ private void jPasswordFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-F
 //                     this.dispose();
 //                }
 //        }
-//    }
+    }
 }//GEN-LAST:event_jPasswordFieldSenhaKeyPressed
 
 private void jPasswordFieldSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaFocusGained
-    jPasswordFieldSenha.setBackground(Color.GRAY);
-    jPasswordFieldSenha.setForeground(Color.white);
+//    jPasswordFieldSenha.setBackground(Color.GRAY);
+//    jPasswordFieldSenha.setForeground(Color.white);
 }//GEN-LAST:event_jPasswordFieldSenhaFocusGained
 
 private void jPasswordFieldSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaFocusLost
-    jPasswordFieldSenha.setBackground(Color.WHITE);
-    jPasswordFieldSenha.setForeground(Color.BLACK);
+//    jPasswordFieldSenha.setBackground(Color.WHITE);
+//    jPasswordFieldSenha.setForeground(Color.BLACK);
     //jPasswordFieldSenha.setBackground(new java.awt.Color(255, 255, 255));
     //jPasswordFieldSenha.setForeground(new java.awt.Color(0, 0, 0));
 }//GEN-LAST:event_jPasswordFieldSenhaFocusLost
