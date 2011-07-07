@@ -1021,7 +1021,7 @@ try{
 
         jTextFieldQtdEstoque.setText(String.valueOf((qtdestoque+qtdCompra)));
 
-        LN.entity.HistoricoEntrada historicoEntrada = new LN.entity.HistoricoEntrada(getNextvalHistorico(), codigo, descricao, qtdCompra, valor, new Date(getDataTelaToBD(dataCompra)), "E", 0.0);
+        LN.entity.HistoricoEntrada historicoEntrada = new LN.entity.HistoricoEntrada(getNextvalHistorico(), codigo, descricao, qtdCompra, valor, new Date(getDataTelaToBD(dataCompra)), "E", 0.0, Inicial.USER);
         Materiais materiais = new Materiais(String.valueOf(codigo), descricao,unidade, (qtdestoque+qtdCompra), qtdmin, valor, fornecedor, date);
         
         sessao.save(historicoEntrada);

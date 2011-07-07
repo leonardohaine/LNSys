@@ -178,6 +178,8 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldCodigo = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
+        jPasswordFieldConfSenha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListUsuario = new javax.swing.JList();
@@ -217,7 +219,7 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonSalvar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButtonSalvar.setFont(new java.awt.Font("Arial", 1, 12));
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,6 +257,8 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jLabel5.setText("Confirma Senha:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -270,32 +274,43 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
                         .addComponent(jButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonExcluir))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBoxEntradaSaida)
-                                    .addComponent(jCheckBoxUsuarios)
-                                    .addComponent(jCheckBoxClientes)
-                                    .addComponent(jCheckBoxOrcamentos))
-                                .addGap(24, 24, 24)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(3, 3, 3)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jCheckBoxEntradaSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jCheckBoxUsuarios)
+                                            .addComponent(jCheckBoxOrcamentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jCheckBoxClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(24, 24, 24)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jCheckBoxFornecedores)
+                                            .addComponent(jCheckBoxRelatorios)
+                                            .addComponent(jCheckBoxProdutos)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jPasswordFieldConfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBoxFornecedores)
-                                    .addComponent(jCheckBoxRelatorios)
-                                    .addComponent(jCheckBoxProdutos))))))
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
+                        .addGap(0, 0, 0)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -310,6 +325,8 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
+                    .addComponent(jPasswordFieldConfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
                     .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,7 +344,7 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
                             .addComponent(jCheckBoxRelatorios))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBoxEntradaSaida))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonIncluir)
@@ -338,7 +355,7 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Usuários:");
 
-        jListUsuario.setFont(new java.awt.Font("Arial Black", 0, 12));
+        jListUsuario.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jListUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jListUsuarioMouseClicked(evt);
@@ -356,11 +373,11 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -369,11 +386,11 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -578,7 +595,7 @@ private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GE
     }
 
     Session sessao = HibernateUtil.getSessionFactory().openSession();
-        Transaction transacao = sessao.beginTransaction();
+    Transaction transacao = sessao.beginTransaction();
 
     String nomeUs = (String) jListUsuario.getSelectedValue();
 
@@ -586,72 +603,76 @@ private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GE
     int a = JOptionPane.showOptionDialog(this, "Deseja apagar o usuário "+ nomeUs.toLowerCase() +"?","Atenção",
     JOptionPane.YES_NO_OPTION ,JOptionPane.QUESTION_MESSAGE, null,
     options, options[0]);
+
     if(a == JOptionPane.YES_OPTION){
 
        
             
-           Usuarios usuarios = (Usuarios) sessao.load(Usuarios.class,jTextFieldCodigo.getText());
-           //System.out.println("DATA "+ new Date("dd/MM/yyyy"));
-           sessao.delete(usuarios);
-           sessao.flush();
-           transacao.commit();
-           sessao.close();
-           vUsuario.remove(nomeUs);
-           jListUsuario.setListData(vUsuario);
-           jListUsuario.updateUI();
-           limpaTela();
-           JOptionPane.showMessageDialog(null,"Usuário deletado com sucesso!", "Atenção", JOptionPane.INFORMATION_MESSAGE );
-       
+       Usuarios usuarios = (Usuarios) sessao.load(Usuarios.class,jTextFieldCodigo.getText());
+       //System.out.println("DATA "+ new Date("dd/MM/yyyy"));
+       sessao.delete(usuarios);
+       sessao.flush();
+       transacao.commit();
+       sessao.close();
+       vUsuario.remove(nomeUs);
+       jListUsuario.setListData(vUsuario);
+       jListUsuario.updateUI();
+       limpaTela();
+       JOptionPane.showMessageDialog(null,"Usuário deletado com sucesso!", "Atenção", JOptionPane.INFORMATION_MESSAGE );
+
     }else{
         return;
     }
 }//GEN-LAST:event_jButtonExcluirActionPerformed
 
 private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-    limpaTela();
+        limpaTela();
 }//GEN-LAST:event_formInternalFrameOpened
 
 private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-     if(jTextFieldUsuario.getText().equals("") || jTextFieldUsuario.getText() == null || jPasswordFieldSenha.getText().equals("") || jPasswordFieldSenha.getText() == null){
+    if(jTextFieldUsuario.getText().equals("") || jTextFieldUsuario.getText() == null || jPasswordFieldSenha.getText().equals("") || jPasswordFieldSenha.getText() == null){
         JOptionPane.showMessageDialog(null,"Preencha os campos USUÁRIO e SENHA", "Atenção", JOptionPane.INFORMATION_MESSAGE );
-         return ;
+        return ;
     }
 
+    String clientes = null;
+    String orcamentos = null;
+    String produtos = null;
+    String fornecedores = null;
+    String usuarios = null;
+    String entradaSaida = null;
+    String relatorios = null;
+    String codigo =  jTextFieldCodigo.getText();
+    String nomeUsuario = jTextFieldUsuario.getText().toUpperCase();
+    String senha = jPasswordFieldSenha.getText();
 
-        String clientes = null;
-        String orcamentos = null;
-        String produtos = null;
-        String fornecedores = null;
-        String usuarios = null;
-        String entradaSaida = null;
-        String relatorios = null;
-        String codigo =  jTextFieldCodigo.getText();
-        String nomeUsuario = jTextFieldUsuario.getText().toUpperCase();
-        String senha = jPasswordFieldSenha.getText();
+    Session sessao = HibernateUtil.getSessionFactory().openSession();
+    Transaction transacao = sessao.beginTransaction();
 
-        Session sessao = HibernateUtil.getSessionFactory().openSession();
-        Transaction transacao = sessao.beginTransaction();
+    if (jCheckBoxClientes.isSelected()) {clientes = "S";} else { clientes = "N";}
+    if (jCheckBoxOrcamentos.isSelected()) {orcamentos = "S"; } else {orcamentos = "N";}
+    if (jCheckBoxProdutos.isSelected()) { produtos = "S";} else {produtos = "N";}
+    if (jCheckBoxFornecedores.isSelected()) {fornecedores = "S";} else { fornecedores = "N";}
+    if (jCheckBoxUsuarios.isSelected()) {usuarios = "S";} else { usuarios = "N";}
+    if (jCheckBoxEntradaSaida.isSelected()) {entradaSaida = "S";} else { entradaSaida = "N";}
+    if (jCheckBoxRelatorios.isSelected()) {relatorios = "S";} else { relatorios = "N";}
 
+    if(!jPasswordFieldSenha.getText().equals(jPasswordFieldConfSenha.getText())){
+       JOptionPane.showMessageDialog(null, "As Senhas Estão diferentes !");
+        return ;
+    }
 
-        if (jCheckBoxClientes.isSelected()) {clientes = "S";} else { clientes = "N";}
-        if (jCheckBoxOrcamentos.isSelected()) {orcamentos = "S"; } else {orcamentos = "N";}
-        if (jCheckBoxProdutos.isSelected()) { produtos = "S";} else {produtos = "N";}
-        if (jCheckBoxFornecedores.isSelected()) {fornecedores = "S";} else { fornecedores = "N";}
-        if (jCheckBoxUsuarios.isSelected()) {usuarios = "S";} else { usuarios = "N";}
-        if (jCheckBoxEntradaSaida.isSelected()) {entradaSaida = "S";} else { entradaSaida = "N";}
-        if (jCheckBoxRelatorios.isSelected()) {relatorios = "S";} else { relatorios = "N";}
-
-            vUsuario.add(nomeUsuario);
-            jListUsuario.setListData(vUsuario);
-            jListUsuario.updateUI();
-            //Usuarios(String codusuario, String nome, String senha, String checkprodutos, String checkclientes, String checkfornecedores, String checkorcamentos, String checkrelatorios, String checkentradasaida, String checkusuarios)
-            Usuarios cUsuarios = new Usuarios(codigo, nomeUsuario, senha, produtos, clientes, fornecedores, orcamentos, relatorios, entradaSaida, usuarios);
-            sessao.save(cUsuarios);
-            transacao.commit();
-            sessao.close();
-            limpaTela();
-            falseEnable();
-            JOptionPane.showMessageDialog(null,"Usuário cadastrado com Sucesso!", "Atenção", JOptionPane.INFORMATION_MESSAGE );
+    vUsuario.add(nomeUsuario);
+    jListUsuario.setListData(vUsuario);
+    jListUsuario.updateUI();
+    //Usuarios(String codusuario, String nome, String senha, String checkprodutos, String checkclientes, String checkfornecedores, String checkorcamentos, String checkrelatorios, String checkentradasaida, String checkusuarios)
+    Usuarios cUsuarios = new Usuarios(codigo, nomeUsuario, senha, produtos, clientes, fornecedores, orcamentos, relatorios, entradaSaida, usuarios);
+    sessao.save(cUsuarios);
+    transacao.commit();
+    sessao.close();
+    limpaTela();
+    falseEnable();
+    JOptionPane.showMessageDialog(null,"Usuário cadastrado com Sucesso!", "Atenção", JOptionPane.INFORMATION_MESSAGE );
 
 
 }//GEN-LAST:event_jButtonSalvarActionPerformed
@@ -673,8 +694,10 @@ private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JList jListUsuario;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordFieldConfSenha;
     private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

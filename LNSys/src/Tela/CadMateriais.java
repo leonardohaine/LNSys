@@ -519,6 +519,11 @@ public class CadMateriais extends javax.swing.JInternalFrame {
                 jTableMateriaisMousePressed(evt);
             }
         });
+        jTableMateriais.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableMateriaisKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableMateriais);
 
         jLabel6.setText("Pesquisa:");
@@ -537,7 +542,7 @@ public class CadMateriais extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -553,7 +558,7 @@ public class CadMateriais extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)))
+                        .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -869,10 +874,10 @@ public class CadMateriais extends javax.swing.JInternalFrame {
             Query consultaMaterial = sessao.createQuery("from Materiais as m where m.codmateriais = '"+codigo+"' ");
 
         //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
-        List ListMateriais = consultaMaterial.list();
+            List ListMateriais = consultaMaterial.list();
         //List materiais = consultaMat.list();
         //System.out.println("foram encontradas "+orcamentos.size()+" orcamentos");
-        Iterator i = ListMateriais.iterator();
+            Iterator i = ListMateriais.iterator();
 
 
             //MateriaisOrcamentos matOrca = new MateriaisOrcamentos();
@@ -984,7 +989,7 @@ public class CadMateriais extends javax.swing.JInternalFrame {
             int line = jTableMateriais.getSelectedRow();
 
             String codigo = (String) table.getValueAt(line, 0);
-
+            System.out.println("CODIGO "+ codigo);
             jButtonAlterar.setEnabled(true);
             jButtonDeletar.setEnabled(true);
             jButtonSalvar.setEnabled(false);
@@ -997,10 +1002,10 @@ public class CadMateriais extends javax.swing.JInternalFrame {
             Query consultaMaterial = sessao.createQuery("from Materiais as m where m.codmateriais = '"+codigo+"' ");
 
         //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
-        List ListMateriais = consultaMaterial.list();
+            List ListMateriais = consultaMaterial.list();
         //List materiais = consultaMat.list();
         //System.out.println("foram encontradas "+orcamentos.size()+" orcamentos");
-        Iterator i = ListMateriais.iterator();
+            Iterator i = ListMateriais.iterator();
 
 
             //MateriaisOrcamentos matOrca = new MateriaisOrcamentos();
@@ -1107,13 +1112,21 @@ public class CadMateriais extends javax.swing.JInternalFrame {
 
                 javax.swing.table.DefaultTableModel table =(javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
 
+                //System.out.println("Codigo RUN"+ table.getValueAt(jTableMateriais.getSelectedRow(), 0));
+
                 if(table.getRowCount() > 0 || jTextFieldPesquisa.getText().length() > 0){
 
                     TableRowSorter sorter = new TableRowSorter(table);
-                    jTableMateriais.setRowSorter(sorter);
-                    sorter.setRowFilter(RowFilter.regexFilter("(?i)"+ jTextFieldPesquisa.getText()));
-                    System.out.println("PESQUISANDO");
-                    jTableMateriais.updateUI();
+                    jTableMateriais.setRowSorter(sorter);                                         //coluna
+                    sorter.setRowFilter(RowFilter.regexFilter("(?i)"+ jTextFieldPesquisa.getText(), 1));
+                    try{
+                        sorter.convertRowIndexToView(table.getRowCount());
+                    }catch(Exception e){
+                        System.out.println("Erro Index: "+ e);
+                    }
+
+                    System.out.println("PESQUISANDO Indice "+ jTableMateriais.getSelectedRow());
+                    //jTableMateriais.updateUI();
                 }
             }
        };
@@ -1121,6 +1134,71 @@ public class CadMateriais extends javax.swing.JInternalFrame {
 
         //jTableMateriais.getRowSorter(sorter);
     }//GEN-LAST:event_jTextFieldPesquisaKeyReleased
+
+    private void jTableMateriaisKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableMateriaisKeyReleased
+        if (evt.getKeyCode() == evt.VK_DOWN || evt.getKeyCode() == evt.VK_UP) {
+            SimpleDateFormat sfd = new SimpleDateFormat("dd/MM/yyyy");
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            Transaction transacao = sessao.beginTransaction();
+
+            javax.swing.table.DefaultTableModel table =(javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
+
+            int line = jTableMateriais.getSelectedRow();
+
+            String codigo = (String) table.getValueAt(line, 0);
+
+            jButtonAlterar.setEnabled(true);
+            jButtonDeletar.setEnabled(true);
+            jButtonSalvar.setEnabled(false);
+            //            if(jTextFieldPesqCodigo.getText().equals("")){
+            //                //Consulta = false;
+            //                LimpaCampos();
+            //                jTextFieldPesqCodigo.requestFocus();
+            //            }else{
+
+            Query consultaMaterial = sessao.createQuery("from Materiais as m where m.codmateriais = '"+codigo+"' ");
+
+        //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
+            List ListMateriais = consultaMaterial.list();
+        //List materiais = consultaMat.list();
+        //System.out.println("foram encontradas "+orcamentos.size()+" orcamentos");
+            Iterator i = ListMateriais.iterator();
+
+
+            //MateriaisOrcamentos matOrca = new MateriaisOrcamentos();
+            //System.out.println("MAT ->"+ matOrca.getProduto());
+
+            while (i.hasNext()) {
+
+                Materiais materiais = (Materiais) i.next();
+
+
+                jTextFieldCodigo.setText(String.valueOf(materiais.getCodmateriais()));
+                jTextFieldDescricao.setText(materiais.getDescricao());
+                jTextFieldUnidade.setText(materiais.getUnidade());
+                jTextFieldQtdEstoque.setText(String.valueOf(materiais.getQtdestoque()));
+                jTextFieldQtdMin.setText(String.valueOf(materiais.getQtdminima()));
+                jComboBoxFornecedor.setEditable(true);
+                jComboBoxFornecedor.setSelectedItem(materiais.getFornecedor());
+                jComboBoxFornecedor.setEditable(false);
+                System.out.println("FOrn "+ materiais.getFornecedor());
+                jTextFieldValor.setText(String.valueOf(moeda(materiais.getValor())));
+                jTextFieldData.setText(sfd.format(materiais.getDatacadastro()));
+                //jLabelRetorno.setText("");
+                //                            if (listClientes.isEmpty()) {
+                //                                LimpaCampos();
+                //                                jLabelRetorno.setText("Cliente não encontrado!!");
+                //                                jTextFieldPesqCodigo.requestFocus();
+                //                                return ;
+                //                            }
+
+                jButtonAlterar.setEnabled(true);
+                jButtonDeletar.setEnabled(true);
+                jButtonSalvar.setEnabled(false);
+                //System.out.println("TRUE");
+            }
+        }
+    }//GEN-LAST:event_jTableMateriaisKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

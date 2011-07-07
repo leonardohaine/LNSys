@@ -28,7 +28,7 @@ public class HistoricoEntrada  implements java.io.Serializable {
         this.codhistorico = codhistorico;
         this.codmateriais = codmateriais;
     }
-    public HistoricoEntrada(int codhistorico, int codmateriais, String descricao, Integer quantidade, Double valor, Date dataentrada, String status, Double total) {
+    public HistoricoEntrada(int codhistorico, int codmateriais, String descricao, Integer quantidade, Double valor, Date dataentrada, String status, Double total, String usuario) {
        this.codhistorico = codhistorico;
        this.codmateriais = codmateriais;
        this.descricao = descricao;

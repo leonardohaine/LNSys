@@ -142,7 +142,7 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
 
 int e = (Integer) table.getValueAt(row, 3);
 int m = (Integer) table.getValueAt(row, 4);
-      System.out.println("Estoque "+ e+ " Minimo "+ m);
+      //System.out.println("Estoque "+ e+ " Minimo "+ m);
      if(e <= m && table.getColumnName(3).equals("Qtd Estoque") && table.getColumnName(4).equals("Qtd Miníma") ){
        setBackground(table.getBackground());
        setIcon(red);
@@ -193,7 +193,7 @@ int m = (Integer) table.getValueAt(row, 4);
             while(m.hasNext()){
                 Materiais mat = (Materiais) m.next();
 
-                System.out.println("Estoque " + mat.getQtdestoque());
+                //System.out.println("Estoque " + mat.getQtdestoque());
 
                 TableCellRenderer tcr = new ImagemTable(mat.getQtdestoque(), mat.getQtdminima());
                 TableColumn column = jTableMateriais.getColumnModel().getColumn(8);
@@ -824,7 +824,7 @@ int m = (Integer) table.getValueAt(row, 4);
                 modelo.setValueAt(ConfirmaSaida.qtdVenda, row, 3);
                 modelo.setValueAt(moeda(ConfirmaSaida.valor), row, 5);
                 jTableMateriais.updateUI();
-                LN.entity.HistoricoEntrada historicoEntrada = new LN.entity.HistoricoEntrada(getNextvalMateriais(), Integer.parseInt(cod), desc, ConfirmaSaida.quantidade, ConfirmaSaida.valor, new Date(), ConfirmaSaida.status, ConfirmaSaida.total);
+                LN.entity.HistoricoEntrada historicoEntrada = new LN.entity.HistoricoEntrada(getNextvalMateriais(), Integer.parseInt(cod), desc, ConfirmaSaida.quantidade, ConfirmaSaida.valor, new Date(), ConfirmaSaida.status, ConfirmaSaida.total, Inicial.USER);
                 Materiais mat = new Materiais(cod, desc, unidade, ConfirmaSaida.qtdVenda, minimo, ConfirmaSaida.valor, fornecedor, data);
 
                 sessao.save(historicoEntrada);
@@ -928,7 +928,7 @@ int m = (Integer) table.getValueAt(row, 4);
                 modelo.setValueAt(ConfirmaSaida.qtdVenda, row, 3);
                 modelo.setValueAt(moeda(ConfirmaSaida.valor), row, 5);
                 jTableMateriais.updateUI();
-                LN.entity.HistoricoEntrada historicoEntrada = new LN.entity.HistoricoEntrada(getNextvalMateriais(), Integer.parseInt(cod), desc, ConfirmaSaida.quantidade, ConfirmaSaida.valor, new Date(), ConfirmaSaida.status, ConfirmaSaida.total);
+                LN.entity.HistoricoEntrada historicoEntrada = new LN.entity.HistoricoEntrada(getNextvalMateriais(), Integer.parseInt(cod), desc, ConfirmaSaida.quantidade, ConfirmaSaida.valor, new Date(), ConfirmaSaida.status, ConfirmaSaida.total, Inicial.USER);
                 Materiais mat = new Materiais(cod, desc, unidade, ConfirmaSaida.qtdVenda, minimo, ConfirmaSaida.valor, fornecedor, data);
 
                 sessao.save(historicoEntrada);

@@ -80,7 +80,7 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
             while(iHistorico.hasNext()){
                  LN.entity.HistoricoEntrada historico = (LN.entity.HistoricoEntrada) iHistorico.next();
 
-                 tableResultado.addRow(new Object[] {historico.getCodmateriais(), historico.getDescricao(), sfd.format(historico.getDataentrada()), historico.getQuantidade(), moeda(historico.getValor()), historico.getStatus()});
+                 tableResultado.addRow(new Object[] {historico.getCodmateriais(), historico.getDescricao(), sfd.format(historico.getDataentrada()), historico.getQuantidade(), moeda(historico.getValor()), historico.getStatus(), historico.getUsuario()});
                  //System.out.println("HIST: "+ historico.getDescricao());
                  //jTableMateriais.updateUI();
                  //corLinhasTabela();
@@ -121,6 +121,7 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
         jTableHistorico.getColumnModel().getColumn(3).setCellRenderer(centralizado);
         jTableHistorico.getColumnModel().getColumn(4).setCellRenderer(direita);
         jTableHistorico.getColumnModel().getColumn(5).setCellRenderer(centralizado);
+        jTableHistorico.getColumnModel().getColumn(6).setCellRenderer(centralizado);
         //jTableHistorico.getColumnModel().getColumn(6).setCellRenderer(centralizado);
         //jTableMateriais.getColumnModel().getColumn(7).setCellRenderer(direita);
         //jTableMaterial.getColumnModel().getColumn(6).setCellRenderer(direita);
@@ -128,19 +129,21 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
         //jTableMaterial.getColumnModel().getColumn(8).setCellRenderer(centralizado);
         //jTableMaterial.getColumnModel().getColumn(9).setCellRenderer(centralizado);
         System.out.println("Ajustando tamanho das colunas");
-        jTableHistorico.getColumnModel().getColumn(0).setPreferredWidth(60); //codigo
-        jTableHistorico.getColumnModel().getColumn(0).setMinWidth(60);
+        jTableHistorico.getColumnModel().getColumn(0).setPreferredWidth(55); //codigo
+        jTableHistorico.getColumnModel().getColumn(0).setMinWidth(55);
         //jTableMateriais.getColumnModel().getColumn(0).setMaxWidth(30);
-        jTableHistorico.getColumnModel().getColumn(1).setPreferredWidth(270);//descricao
-        jTableHistorico.getColumnModel().getColumn(1).setMinWidth(270);
-        jTableHistorico.getColumnModel().getColumn(2).setPreferredWidth(115);//85 QUANT estoque
-        jTableHistorico.getColumnModel().getColumn(2).setMinWidth(115);
+        jTableHistorico.getColumnModel().getColumn(1).setPreferredWidth(255);//descricao
+        jTableHistorico.getColumnModel().getColumn(1).setMinWidth(255);
+        jTableHistorico.getColumnModel().getColumn(2).setPreferredWidth(110);//85 QUANT estoque
+        jTableHistorico.getColumnModel().getColumn(2).setMinWidth(110);
         jTableHistorico.getColumnModel().getColumn(3).setPreferredWidth(85);//65 quant minima
         jTableHistorico.getColumnModel().getColumn(3).setMinWidth(85);
         jTableHistorico.getColumnModel().getColumn(4).setPreferredWidth(75);//265 valor
         jTableHistorico.getColumnModel().getColumn(4).setMinWidth(75);
-        jTableHistorico.getColumnModel().getColumn(5).setPreferredWidth(95);//105 fornecedor
-        jTableHistorico.getColumnModel().getColumn(5).setMinWidth(95);
+        jTableHistorico.getColumnModel().getColumn(5).setPreferredWidth(40);//105 fornecedor
+        jTableHistorico.getColumnModel().getColumn(5).setMinWidth(40);
+        jTableHistorico.getColumnModel().getColumn(6).setPreferredWidth(85);
+        jTableHistorico.getColumnModel().getColumn(6).setMinWidth(85);
         //jTableHistorico.getColumnModel().getColumn(6).setPreferredWidth(100);//85 data
         //jTableHistorico.getColumnModel().getColumn(6).setMinWidth(100);
         //jTableMaterial.getColumnModel().getColumn(5).setPreferredWidth(0);//COR
@@ -195,10 +198,10 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
 
             jTableHistorico.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][][] {
-                    {null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null},
                 },
                 new String [] {
-                    "Código","Descrição","Data Entrada/Saída", "Quantidade", "Valor", "Entrada/Saída"
+                    "Código","Descrição","Data Entrada/Saída", "Quantidade", "Valor", "E/S", "Usuário"
                 }
             ){
             public boolean isCellEditable(int row, int col) {
@@ -460,7 +463,7 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
             while(iHistorico.hasNext()){
                  LN.entity.HistoricoEntrada historico = (LN.entity.HistoricoEntrada) iHistorico.next();
 
-                 tableResultado.addRow(new Object[] {historico.getCodmateriais(), historico.getDescricao(), sfd.format(historico.getDataentrada()), historico.getQuantidade(), moeda(historico.getValor()), historico.getStatus()});
+                 tableResultado.addRow(new Object[] {historico.getCodmateriais(), historico.getDescricao(), sfd.format(historico.getDataentrada()), historico.getQuantidade(), moeda(historico.getValor()), historico.getStatus(), historico.getUsuario()});
                  //System.out.println("HIST: "+ historico.getDescricao());
                  //jTableMateriais.updateUI();
                  //corLinhasTabela();
@@ -499,7 +502,7 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
             while(iHistorico.hasNext()){
                  LN.entity.HistoricoEntrada historico = (LN.entity.HistoricoEntrada) iHistorico.next();
 
-                 tableResultado.addRow(new Object[] {historico.getCodmateriais(), historico.getDescricao(), sfd.format(historico.getDataentrada()), historico.getQuantidade(), moeda(historico.getValor()), historico.getStatus()});
+                 tableResultado.addRow(new Object[] {historico.getCodmateriais(), historico.getDescricao(), sfd.format(historico.getDataentrada()), historico.getQuantidade(), moeda(historico.getValor()), historico.getStatus(), historico.getUsuario()});
                  //System.out.println("HIST: "+ historico.getDescricao());
                  //jTableMateriais.updateUI();
                  //corLinhasTabela();
@@ -538,7 +541,7 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
             while(iHistorico.hasNext()){
                  LN.entity.HistoricoEntrada historico = (LN.entity.HistoricoEntrada) iHistorico.next();
 
-                 tableResultado.addRow(new Object[] {historico.getCodmateriais(), historico.getDescricao(), sfd.format(historico.getDataentrada()), historico.getQuantidade(), moeda(historico.getValor()), historico.getStatus()});
+                 tableResultado.addRow(new Object[] {historico.getCodmateriais(), historico.getDescricao(), sfd.format(historico.getDataentrada()), historico.getQuantidade(), moeda(historico.getValor()), historico.getStatus(), historico.getUsuario()});
                  //System.out.println("HIST: "+ historico.getDescricao());
                  //jTableMateriais.updateUI();
                  //corLinhasTabela();
