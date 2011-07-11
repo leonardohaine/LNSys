@@ -547,7 +547,7 @@ public class CadClientes extends javax.swing.JInternalFrame {
         jLabelRetorno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jTableClientes.setBackground(new java.awt.Color(0, 121, 76));
-        jTableClientes.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jTableClientes.setFont(new java.awt.Font("Arial", 1, 12));
         jTableClientes.setForeground(new java.awt.Color(255, 255, 255));
         jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -630,10 +630,10 @@ public class CadClientes extends javax.swing.JInternalFrame {
                             .addComponent(jButtonSalvar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabelRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -684,14 +684,14 @@ public class CadClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        String razaoSocial, fantasia, nomeContato, endereco, bairro, cidade, cep,
-               telefone, celular, dataNascimento, rg, cpf, cnpj, inscricaoEstadual,
-               dataCadastro, observacao;
+            String razaoSocial, fantasia, nomeContato, endereco, bairro, cidade, cep,
+                   telefone, celular, dataNascimento, rg, cpf, cnpj, inscricaoEstadual,
+                   dataCadastro, observacao;
 
-        SimpleDateFormat sfd = new SimpleDateFormat("dd/MM/yyyy");
-        //fabricaDeSessoes = new Configuration().configure().buildSessionFactory();
-        Session sessao;
-        Transaction transacao;
+            SimpleDateFormat sfd = new SimpleDateFormat("dd/MM/yyyy");
+            //fabricaDeSessoes = new Configuration().configure().buildSessionFactory();
+            Session sessao;
+            Transaction transacao;
 
       try{
 
@@ -731,10 +731,13 @@ public class CadClientes extends javax.swing.JInternalFrame {
 
             Clientes cliente = new Clientes (codigo, razaoSocial, fantasia, nomeContato, endereco, bairro, cidade, cep, telefone, celular, newDataN, rg, cpf, cnpj, inscricaoEstadual,observacao, new Date(getDataTelaToBD(dataCadastro)));
 
+            sessao.save(cliente);
+            transacao.commit();
+            sessao.close();
 
-           sessao.save(cliente);
-           transacao.commit();
-           sessao.close();
+            javax.swing.table.DefaultTableModel tableResultado =(javax.swing.table.DefaultTableModel)jTableClientes.getModel();
+            tableResultado.addRow(new Object[] {codigo, razaoSocial});
+            jTableClientes.updateUI();
 
         }catch(Exception ex){
             ex.printStackTrace();
@@ -757,7 +760,7 @@ public class CadClientes extends javax.swing.JInternalFrame {
 
            Session sessao = HibernateUtil.getSessionFactory().openSession();
            Transaction transacao = sessao.beginTransaction();
-
+           DefaultTableModel tableResultado = (DefaultTableModel)jTableClientes.getModel();
            if(jTextFieldCodigo.getText().equals("")){
                JOptionPane.showMessageDialog(null,"Pesquise algum cliente para deletar", "Atenção", JOptionPane.INFORMATION_MESSAGE );
                return;
@@ -775,9 +778,11 @@ public class CadClientes extends javax.swing.JInternalFrame {
                    sessao.close();
 
                    LimpaCampos();
+                   tableResultado.removeRow(jTableClientes.getSelectedRow());
+                   jTableClientes.updateUI();
                    JOptionPane.showMessageDialog(null, "Cliente"+jTextFieldCodigo.getText()+"deletado com sucesso");
 
-                  System.out.println("Cliente "+jTextFieldCodigo.getText()+" deletado com sucesso!");
+                   System.out.println("Cliente "+jTextFieldCodigo.getText()+" deletado com sucesso!");
                }else{
                   System.out.println("clicou em NÂO");
                   return;

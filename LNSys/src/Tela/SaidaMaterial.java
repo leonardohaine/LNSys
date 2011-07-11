@@ -444,7 +444,7 @@ int m = (Integer) table.getValueAt(row, 4);
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jButtonAtualizar)
                 .addContainerGap())
         );
@@ -464,7 +464,7 @@ int m = (Integer) table.getValueAt(row, 4);
 
         jTableMateriais.setAutoCreateRowSorter(true);
         jTableMateriais.setBackground(new java.awt.Color(0, 121, 76));
-        jTableMateriais.setFont(new java.awt.Font("Arial", 1, 12));
+        jTableMateriais.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jTableMateriais.setForeground(new java.awt.Color(255, 255, 255));
         jTableMateriais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -483,6 +483,9 @@ int m = (Integer) table.getValueAt(row, 4);
         jTableMateriais.setRowHeight(20);
         jTableMateriais.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jTableMateriais.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jTableMateriais.getTableHeader().setResizingAllowed(false);
+        jTableMateriais.getTableHeader().setReorderingAllowed(false);
+        jTableMateriais.setUpdateSelectionOnSort(false);
         jTableMateriais.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableMateriaisMouseClicked(evt);
@@ -511,7 +514,7 @@ int m = (Integer) table.getValueAt(row, 4);
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(219, 219, 219)
                         .addComponent(jLabelRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -526,7 +529,7 @@ int m = (Integer) table.getValueAt(row, 4);
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();

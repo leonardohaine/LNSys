@@ -52,7 +52,7 @@
     <property name="validadeproposta" type="string">
       <column length="80" name="validadeproposta"/>
     </property>
-    <set inverse="true" name="materiaisOrcamentoses">
+    <set inverse="true" name="materiaisOrcamentoses" cascade="all-delete-orphan">
       <key>
         <column length="15" name="codmatorcamentos"/>
       </key>

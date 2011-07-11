@@ -55,7 +55,7 @@
     <property name="datacadastro" type="date">
       <column length="13" name="datacadastro"/>
     </property>
-    <set inverse="true" name="orcamentoses">
+    <set inverse="true" name="orcamentoses" cascade="all-delete-orphan">
       <key>
         <column name="codcliente"/>
       </key>
