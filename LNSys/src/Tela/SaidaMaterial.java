@@ -129,10 +129,10 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
      Object value, boolean isSelected, boolean hasFocus, int row,
      int column){
 
-       DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+     DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
 //        int row = jTableMaterial.getRowCount();
 //        jTableMaterial.setBackground(((row%2==0) ? Color.gray : Color.yellow));
-        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+     centralizado.setHorizontalAlignment(SwingConstants.CENTER);
         //table.getColumnModel().getColumn(8).setCellRenderer(centralizado);
 
      Icon green = new ImageIcon(this.getClass().getClassLoader().getResource("imagens/ledgreen22.png"));
@@ -140,8 +140,8 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
      // certifique-se da existencia da imagem "icon.gif" antes de executar
 //System.out.println("Estoque: "+ estoque + "\n Minimo: "+ minimo);
 
-int e = (Integer) table.getValueAt(row, 3);
-int m = (Integer) table.getValueAt(row, 4);
+     int e = (Integer) table.getValueAt(row, 3);
+     int m = (Integer) table.getValueAt(row, 4);
       //System.out.println("Estoque "+ e+ " Minimo "+ m);
      if(e <= m && table.getColumnName(3).equals("Qtd Estoque") && table.getColumnName(4).equals("Qtd Miníma") ){
        setBackground(table.getBackground());
@@ -171,7 +171,7 @@ int m = (Integer) table.getValueAt(row, 4);
                 }
             ));
 
- mostraTabelaVazia();
+            mostraTabelaVazia();
 
 
  // Create the dummy data (a few rows of names)

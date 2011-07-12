@@ -87,6 +87,7 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
         //jTextFieldUsuario.setEditable(true);
         //jTextFieldCodigo.setEditable(true);
         jPasswordFieldSenha.setEditable(true);
+        jPasswordFieldConfSenha.setEditable(true);
         jCheckBoxClientes.setEnabled(true);
         jCheckBoxOrcamentos.setEnabled(true);
         jCheckBoxProdutos.setEnabled(true);
@@ -103,6 +104,7 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
         jTextFieldCodigo.setEditable(false);
         jTextFieldUsuario.setEditable(false);
         jPasswordFieldSenha.setEditable(false);
+        jPasswordFieldConfSenha.setEditable(false);
         jCheckBoxClientes.setEnabled(false);
         jCheckBoxOrcamentos.setEnabled(false);
         jCheckBoxProdutos.setEnabled(false);
@@ -119,6 +121,7 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
         jTextFieldCodigo.setText("");
         jTextFieldUsuario.setText("");
         jPasswordFieldSenha.setText("");
+        jPasswordFieldConfSenha.setText("");
         jCheckBoxClientes.setSelected(false);
         jCheckBoxOrcamentos.setSelected(false);
         jCheckBoxProdutos.setSelected(false);
@@ -220,7 +223,7 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonSalvar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButtonSalvar.setFont(new java.awt.Font("Arial", 1, 12));
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,7 +239,7 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonExcluir.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButtonExcluir.setFont(new java.awt.Font("Arial", 1, 12));
         jButtonExcluir.setText("Excluir");
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,6 +265,11 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
 
         jButtonSair.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -395,7 +403,7 @@ public class CadUsuarios extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -681,6 +689,10 @@ private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 
 }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+    this.doDefaultCloseAction();
+}//GEN-LAST:event_jButtonSairActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

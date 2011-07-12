@@ -15,6 +15,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,6 +41,7 @@ public class Registro extends javax.swing.JDialog {
        public static String USUARIO = null;
        public static String SENHA = null;
        public static String ini = "/windows/LNSys.ini";
+
     /** Creates new form Registro */
     public Registro(java.awt.Frame parent, boolean modal) throws Exception {
         super(parent, modal);
@@ -50,9 +53,19 @@ public class Registro extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         //jLabelRetornoCodigo.setText(getFirstKey());
         //keyGeneration();
+        InetAddress localHost = InetAddress.getLocalHost();
+        NetworkInterface netInter = NetworkInterface.getByInetAddress( localHost );
+        byte[] macAddressBytes = netInter.getHardwareAddress();
+
+        String macAddress =  String.format("%1$02x-%2$02x-%3$02x-%4$02x-%5$02x-%6$02x",
+        macAddressBytes[0], macAddressBytes[1],
+        macAddressBytes[2], macAddressBytes[3],
+        macAddressBytes[4], macAddressBytes[5] ).toUpperCase();
+        System.out.println("MAC: " + macAddress);
 
         jTextFieldDatabase.setVisible(true);
         jLabel1.setVisible(true);
+        this.getFirstKey();
     }
 
     Registro() {
@@ -116,7 +129,7 @@ public class Registro extends javax.swing.JDialog {
             String line;
             while (exit==false) {
                 line = bufferedreader.readLine();
-                //System.out.println("LINE"+line);
+                System.out.println("LINE "+line);
                 if (line == null){
                     exit = true;
                 }else{
@@ -169,14 +182,12 @@ public class Registro extends javax.swing.JDialog {
                 out.newLine();
                 out.write("USUARIO="+new String(encoder.encode(usuario.getBytes())));
                 out.newLine();
-                out.write("SENHA="+new String(encoder.encode(senha.getBytes())));
+                out.write("SENHA="+encoder.encode(senha.getBytes()));
                 out.newLine();
                 out.write("LOGIN=N");
                 
                // out.write(new String(encoder.encode(texto.getBytes())));
                 out.newLine();
-                out.newLine();
-                out.write("*****NÃO ALTERE ESSE DOCUMENTO*****");
                 out.flush();
                 out.close();
 

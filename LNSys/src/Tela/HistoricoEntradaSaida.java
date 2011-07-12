@@ -255,7 +255,7 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
         jLabelDF = new javax.swing.JLabel();
         jComboBoxDataInicial = new CalendarComboBox(true);
         jLabelDI = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonSair = new javax.swing.JButton();
 
         setIconifiable(true);
         setTitle("HISTÓRICO DE ENTRADA E SAÍDA DE MATERIAIS");
@@ -263,7 +263,7 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Histórico de Entrada e Saída de Materiais", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         jTableHistorico.setBackground(new java.awt.Color(0, 121, 76));
-        jTableHistorico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jTableHistorico.setFont(new java.awt.Font("Arial", 1, 12));
         jTableHistorico.setForeground(new java.awt.Color(255, 255, 255));
         jTableHistorico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -345,10 +345,10 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
 
         jLabelDI.setText("Data inicial:");
 
-        jButton1.setText("Sair");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonSairActionPerformed(evt);
             }
         });
 
@@ -359,7 +359,7 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelDI)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -375,7 +375,7 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButtonSaida)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(jButtonSair)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -390,7 +390,7 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
                     .addComponent(jRadioButtonTodos)
                     .addComponent(jRadioButtonEntrada)
                     .addComponent(jRadioButtonSaida)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonSair))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addContainerGap())
@@ -431,9 +431,9 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
         }
 }//GEN-LAST:event_jComboBoxDataInicialKeyPressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         this.doDefaultCloseAction();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jRadioButtonTodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonTodosMouseClicked
         if (evt.getClickCount() == 1) {
@@ -555,7 +555,7 @@ public class HistoricoEntradaSaida extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupEntradaSaida;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonSair;
     private javax.swing.JComboBox jComboBoxDataFinal;
     private javax.swing.JComboBox jComboBoxDataInicial;
     private javax.swing.JLabel jLabelDF;

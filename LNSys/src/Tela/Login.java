@@ -37,11 +37,6 @@ public class Login extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
 
-       // this.setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getClassLoader().getResource("/imagem/cadeado.JPG")));
-        
-        //setTitle("Cadastramento de peças");   
-
-        
     }
     
     public Login(){
@@ -225,7 +220,6 @@ private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
                 Usuarios usuarios = (Usuarios) i.next();
 
-
                     System.out.println("login "+ usuarios.getCodusuario()+"-"+ usuarios.getNome());
                     Login.user = usuarios.getCodusuario()+"-"+ usuarios.getNome();
                     Login.telaUsuarios = usuarios.getCheckusuarios();
@@ -237,70 +231,12 @@ private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     Login.orcamentos = usuarios.getCheckorcamentos();
                     Inicial.USER = user;
                     dispose();
-
             }
         }else{
            JOptionPane.showMessageDialog(this, "Nome ou senha não conferem!!!", "Aviso", JOptionPane.WARNING_MESSAGE);
            return;
         }
 
-
-
-    //
-  String nome2 = jTextFieldUsuario.getText().toUpperCase();
-//    String senha = jPasswordFieldSenha.getText().toUpperCase();
-//
-//        if ( nome.equals("")==true || senha .equals("")==true ){
-//            JOptionPane.showMessageDialog(this, "Informe o Login e a Senha!!!", "Aviso", JOptionPane.WARNING_MESSAGE);
-//        }else {
-//                //Acesso acesso = new Acesso();
-//                UsuarioVO  usuarioVO = new UsuarioVO();
-//                try {
-//
-//                    usuarioVO = Usuario.getAcesso(nome, senha );
-//
-//                } catch(Exception e){
-//                        JOptionPane.showMessageDialog(this, "Erroooooo:\n"+e +"\nCausado por: "+ e.getCause(), "Erro", JOptionPane.ERROR_MESSAGE);
-//                        return ;
-//                }
-//                if (usuarioVO== null){
-//                    limparCampos();
-//                    //cadastro = null;
-//                    JOptionPane.showMessageDialog(this, "Login ou Senha invalidos", "Erro", JOptionPane.INFORMATION_MESSAGE);
-//                    jTextFieldUsuario.requestFocus();
-//                    return ;
-//                }else {
-//                    iniciar = usuarioVO.getIniciar();
-//                    venda = usuarioVO.getVenda();
-//                    cadastro = usuarioVO.getCadastro();
-//                    relatorio = usuarioVO.getRelatorio();
-//                    usuario = usuarioVO.getUsuario();
-//                    compra = usuarioVO.getCompras();
-//                    tabelaPreco = usuarioVO.getTabelapreco();
-//                    System.out.println("faz a logadura");
-//                    System.out.println("COMPRA VO = " + usuarioVO.getCompras());
-//                    user = nome;
-//                    System.out.println(user);
-//                    login = "S";
-//                    System.out.println("VO = " + usuarioVO.toString());
-//                    //Spina spina = new Spina();
-//                    /*
-//                    instanciaLabWear.setMenuRecepcao(true);
-//                    instanciaLabWear.setMenuInternado(true);
-//                    instanciaLabWear.setUsuarioSistema(usuarioVO.getNomeUsuario());
-//                    instanciaLabWear.setCodigoUsuario(usuarioVO.getCodigo());
-//                    instanciaLabWear.setUnidade(strUnidade);
-//
-//                    instanciaLabWear.loginEfetuado = true;
-//                    instanciaLabWear.codigoUsuario = usuarioVO.getCodigo();
-//                    spina.idUsuario =  usuarioVO.getCodigo();
-//                    spina.acesso = usuarioVO.getAcesso();
-//                    //txtCodigoPaciente.setText(prontuarioVO.getCodPaciente())
-//                    */
-//                     this.dispose();
-//                }
-//            }
-//
 }//GEN-LAST:event_jButtonOkActionPerformed
 
 private void jTextFieldUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioKeyPressed
@@ -311,101 +247,48 @@ private void jTextFieldUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIR
 
 private void jPasswordFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaKeyPressed
     if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
-        Session sessao = HibernateUtil.getSessionFactory().openSession();
-        Transaction transacao = sessao.beginTransaction();
 
-        String nome = jTextFieldUsuario.getText().toUpperCase();
-        String senha = jPasswordFieldSenha.getText().toUpperCase();
-
-        Query loginUsuario = sessao.createQuery("from Usuarios as u where u.nome = '"+nome+"' and u.senha = '"+senha+"' ");
-
-        //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
-        List ListUsuario = loginUsuario.list();
-        //List materiais = consultaMat.list();
-        //System.out.println("foram encontradas "+orcamentos.size()+" orcamentos");
-        Iterator i = ListUsuario.iterator();
-
-        System.out.println("List Us: "+ ListUsuario );
-            //MateriaisOrcamentos matOrca = new MateriaisOrcamentos();
-            //System.out.println("MAT ->"+ matOrca.getProduto());
-        if(!ListUsuario.isEmpty()){
-            while(i.hasNext()) {
-
-                Usuarios usuarios = (Usuarios) i.next();
-
-                
-                    System.out.println("login "+ usuarios.getCodusuario()+"-"+ usuarios.getNome());
-                    Login.user = usuarios.getCodusuario()+"-"+ usuarios.getNome();
-                    Login.telaUsuarios = usuarios.getCheckusuarios();
-                    Login.clientes = usuarios.getCheckclientes();
-                    Login.fornecedores = usuarios.getCheckfornecedores();
-                    Login.produtos = usuarios.getCheckprodutos();
-                    Login.relatorio = usuarios.getCheckrelatorios();
-                    Login.entradaSaida = usuarios.getCheckentradasaida();
-                    Login.orcamentos = usuarios.getCheckorcamentos();
-                    Inicial.USER = user;
-                    dispose();
-               
-            }
-        }else{
-           JOptionPane.showMessageDialog(this, "Nome ou senha não conferem!!!", "Aviso", JOptionPane.WARNING_MESSAGE);
-           return;
-        }
-
-    //    String nome = jTextFieldUsuario.getText().toUpperCase();
-//    String senha = jPasswordFieldSenha.getText();
-//    if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
-//        if ( nome.equals("")==true || senha .equals("")==true ){
-//                JOptionPane.showMessageDialog(this, "Informe o Login e a Senha!!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-//        }else {
-//                //Acesso acesso = new Acesso();
-//                UsuarioVO  usuarioVO = new UsuarioVO();
-//                try {
+        jButtonOk.doClick();
+        
+//        Session sessao = HibernateUtil.getSessionFactory().openSession();
+//        Transaction transacao = sessao.beginTransaction();
 //
-//                    usuarioVO = Usuario.getAcesso(nome, senha );
+//        String nome = jTextFieldUsuario.getText().toUpperCase();
+//        String senha = jPasswordFieldSenha.getText().toUpperCase();
 //
-//                } catch(Exception e){
-//                        JOptionPane.showMessageDialog(this, "Erroooooo:\n"+e +"\nCausado por: "+ e.getLocalizedMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-//                        return ;
-//                }
-//                if (usuarioVO== null){
-//                    limparCampos();
-//                    //cadastro = null;
-//                    JOptionPane.showMessageDialog(this, "Login ou Senha invalidos", "Erro", JOptionPane.INFORMATION_MESSAGE);
-//                    jTextFieldUsuario.requestFocus();
-//                    return;
-//                }else {
-//                    iniciar = usuarioVO.getIniciar();
-//                    venda = usuarioVO.getVenda();
-//                    cadastro = usuarioVO.getCadastro();
-//                    relatorio = usuarioVO.getRelatorio();
-//                    usuario = usuarioVO.getUsuario();
-//                    compra = usuarioVO.getCompras();
-//                    tabelaPreco = usuarioVO.getTabelapreco();
-//                    System.out.println("faz a logadura");
-//                    System.out.println("COMPRA VO = " + usuarioVO.getCompras());
-//                    user = nome;
-//                    System.out.println(user);
-//                    login = "S";
+//        Query loginUsuario = sessao.createQuery("from Usuarios as u where u.nome = '"+nome+"' and u.senha = '"+senha+"' ");
 //
-//                    System.out.println("VO = " + usuarioVO.toString());
-//                    //Spina spina = new Spina();
-//                    /*
-//                    instanciaLabWear.setMenuRecepcao(true);
-//                    instanciaLabWear.setMenuInternado(true);
-//                    instanciaLabWear.setUsuarioSistema(usuarioVO.getNomeUsuario());
-//                    instanciaLabWear.setCodigoUsuario(usuarioVO.getCodigo());
-//                    instanciaLabWear.setUnidade(strUnidade);
+//        //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
+//        List ListUsuario = loginUsuario.list();
+//        //List materiais = consultaMat.list();
+//        //System.out.println("foram encontradas "+orcamentos.size()+" orcamentos");
+//        Iterator i = ListUsuario.iterator();
 //
-//                    instanciaLabWear.loginEfetuado = true;
-//                    instanciaLabWear.codigoUsuario = usuarioVO.getCodigo();
-//                    spina.idUsuario =  usuarioVO.getCodigo();
-//                    spina.acesso = usuarioVO.getAcesso();
-//                    //txtCodigoPaciente.setText(prontuarioVO.getCodPaciente())
-//                    */
-//                     this.dispose();
-//                }
+//        System.out.println("List Us: "+ ListUsuario );
+//            //MateriaisOrcamentos matOrca = new MateriaisOrcamentos();
+//            //System.out.println("MAT ->"+ matOrca.getProduto());
+//        if(!ListUsuario.isEmpty()){
+//            while(i.hasNext()) {
+//
+//                Usuarios usuarios = (Usuarios) i.next();
+//
+//                    System.out.println("login "+ usuarios.getCodusuario()+"-"+ usuarios.getNome());
+//                    Login.user = usuarios.getCodusuario()+"-"+ usuarios.getNome();
+//                    Login.telaUsuarios = usuarios.getCheckusuarios();
+//                    Login.clientes = usuarios.getCheckclientes();
+//                    Login.fornecedores = usuarios.getCheckfornecedores();
+//                    Login.produtos = usuarios.getCheckprodutos();
+//                    Login.relatorio = usuarios.getCheckrelatorios();
+//                    Login.entradaSaida = usuarios.getCheckentradasaida();
+//                    Login.orcamentos = usuarios.getCheckorcamentos();
+//                    Inicial.USER = user;
+//                    dispose();
+//            }
+//        }else{
+//           JOptionPane.showMessageDialog(this, "Nome ou senha não conferem!!!", "Aviso", JOptionPane.WARNING_MESSAGE);
+//           return;
 //        }
+
     }
 }//GEN-LAST:event_jPasswordFieldSenhaKeyPressed
 

@@ -12,11 +12,14 @@
 package Tela;
 
 
-import LN.entity.Usuarios;
 import com.jgoodies.looks.plastic.PlasticLookAndFeel;
 import com.jgoodies.looks.plastic.PlasticXPLookAndFeel;
 import com.jgoodies.looks.plastic.theme.*;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.LayoutManager;
+import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -59,9 +62,25 @@ public class Inicial extends javax.swing.JFrame {
     public static String LOGIN = null;
     private static Properties config = new Properties();
     public static String ini = "/windows/LNSys.ini";
+    private LayoutManager layout;
     /** Creates new form Inicial */
     public Inicial() {
         initComponents();
+
+        //layout = new FlowLayout(FlowLayout.CENTER);
+
+                // obter dimensões do pai
+        int larguraPai   = this.getWidth();
+        int alturaPai    = this.getHeight();
+        // obter dimensões do filho
+        int larguraFilho = jPanelBotoes.getWidth();
+        int alturaFilho  = jPanelBotoes.getWidth();
+        // calcular novas coordenadas do filho
+        int novoX        = (larguraPai - larguraFilho) / 2;
+        int novoY        = (alturaPai - alturaFilho) / 2;
+        // centralizar filho
+        //jPanelBotoes.setLocation(novoX, novoY);
+
         try {
             //jButtonBackup.setVisible(false);
             //        jButtonClientes.setVisible(false);
@@ -74,9 +93,11 @@ public class Inicial extends javax.swing.JFrame {
             //try {
             jComboBoxSkin.setVisible(false);
             iniciaLogin();
-            //            Dimension centraliza = Toolkit.getDefaultToolkit().getScreenSize();
-            //            jButtonNovoOrcamento.setLocation((centraliza.width-instancia.getSize().width)/2,
-            //                      (centraliza.height-instancia.getSize().height)/2);
+
+//            jPanelBotoes.setLayout(layout);
+//                        Dimension centraliza = Toolkit.getDefaultToolkit().getScreenSize();
+//                        jPanelBotoes.setLocation((centraliza.width-instancia.getSize().width)/2,
+//                                  (centraliza.height-instancia.getSize().height)/2);
             // testando de novo
             //} catch (InterruptedException ex) {
             //    Logger.getLogger(Inicial.class.getName()).log(Level.SEVERE, null, ex);
@@ -130,10 +151,12 @@ public class Inicial extends javax.swing.JFrame {
 
         setIconImage(getToolkit().getImage(this.getClass().getClassLoader().getResource("imagens/IconeLN.png")));
        
+        
+        this.setSize(1024, 740);
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
-        //this.setSize(1024, 768);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //this.setResizable(false);
+        jPanelBotoes.setLocation(novoX, novoY);
+        this.setResizable(false);
         
 
     }
@@ -148,16 +171,17 @@ public class Inicial extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPaneInicial = new javax.swing.JDesktopPane();
-        jButtonNovoOrcamento = new javax.swing.JButton();
-        jButtonClientes = new javax.swing.JButton();
-        jButtonMateriais = new javax.swing.JButton();
+        jComboBoxSkin = new javax.swing.JComboBox();
+        jPanelBotoes = new javax.swing.JPanel();
         jButtonEntradaSaida = new javax.swing.JButton();
-        jButtonBackup = new javax.swing.JButton();
-        jButtonFornecedores = new javax.swing.JButton();
+        jButtonClientes = new javax.swing.JButton();
+        jButtonNovoOrcamento = new javax.swing.JButton();
         jButtonRelatorioHistorico = new javax.swing.JButton();
         jButtonUsuarios = new javax.swing.JButton();
+        jButtonMateriais = new javax.swing.JButton();
+        jButtonBackup = new javax.swing.JButton();
+        jButtonFornecedores = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        jComboBoxSkin = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LIRA & NOBRE ARTEFATOS DE MADEIRA - SOLUÇÕES EM MÓVEIS SOB MEDIDA");
@@ -165,7 +189,44 @@ public class Inicial extends javax.swing.JFrame {
         jDesktopPaneInicial.setBackground(new java.awt.Color(255, 255, 255));
         jDesktopPaneInicial.setToolTipText("");
 
-        jButtonNovoOrcamento.setFont(new java.awt.Font("Arial Black", 0, 14));
+        jComboBoxSkin.setMaximumRowCount(30);
+        jComboBoxSkin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar Skin", "Windows Classic", "Windows", "Motif", "Metal", "Nimbus", "Brown Sugar", "Dark Star", "Desert Blue", "Desert Bluer", "Desert Green", "Desert Red", "Desert Yellow", "Experience Blue ", "Experience Green", "Experience Royale", "Light Gray", "Silver", "Sky Blue", "Sky Bluer", "Sky Green", "Sky Krupp", "Sky Pink", "Sky Red", "Sky Yellow" }));
+        jComboBoxSkin.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxSkinItemStateChanged(evt);
+            }
+        });
+        jComboBoxSkin.setBounds(10, 10, 130, 22);
+        jDesktopPaneInicial.add(jComboBoxSkin, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jPanelBotoes.setBackground(new java.awt.Color(0, 0, 0));
+
+        jButtonEntradaSaida.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonEntradaSaida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/equipment.png"))); // NOI18N
+        jButtonEntradaSaida.setMnemonic('M');
+        jButtonEntradaSaida.setText("ENTRADA / SAÍDA");
+        jButtonEntradaSaida.setBorderPainted(false);
+        jButtonEntradaSaida.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonEntradaSaida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEntradaSaidaActionPerformed(evt);
+            }
+        });
+
+        jButtonClientes.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/users.png"))); // NOI18N
+        jButtonClientes.setMnemonic('M');
+        jButtonClientes.setText("CLIENTES");
+        jButtonClientes.setBorderPainted(false);
+        jButtonClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClientesActionPerformed(evt);
+            }
+        });
+
+        jButtonNovoOrcamento.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButtonNovoOrcamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Docs.png"))); // NOI18N
         jButtonNovoOrcamento.setMnemonic('N');
         jButtonNovoOrcamento.setText("ORÇAMENTO");
@@ -178,84 +239,8 @@ public class Inicial extends javax.swing.JFrame {
                 jButtonNovoOrcamentoActionPerformed(evt);
             }
         });
-        jButtonNovoOrcamento.setBounds(300, 140, 190, 150);
-        jDesktopPaneInicial.add(jButtonNovoOrcamento, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonClientes.setFont(new java.awt.Font("Arial Black", 0, 14));
-        jButtonClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/users.png"))); // NOI18N
-        jButtonClientes.setMnemonic('M');
-        jButtonClientes.setText("CLIENTES");
-        jButtonClientes.setBorderPainted(false);
-        jButtonClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClientesActionPerformed(evt);
-            }
-        });
-        jButtonClientes.setBounds(300, 320, 190, 150);
-        jDesktopPaneInicial.add(jButtonClientes, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButtonMateriais.setFont(new java.awt.Font("Arial Black", 0, 14));
-        jButtonMateriais.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/settings96.png"))); // NOI18N
-        jButtonMateriais.setMnemonic('C');
-        jButtonMateriais.setText("MATERIAIS");
-        jButtonMateriais.setBorderPainted(false);
-        jButtonMateriais.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonMateriais.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonMateriais.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMateriaisActionPerformed(evt);
-            }
-        });
-        jButtonMateriais.setBounds(520, 140, 190, 150);
-        jDesktopPaneInicial.add(jButtonMateriais, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButtonEntradaSaida.setFont(new java.awt.Font("Arial Black", 0, 14));
-        jButtonEntradaSaida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/equipment.png"))); // NOI18N
-        jButtonEntradaSaida.setMnemonic('M');
-        jButtonEntradaSaida.setText("ENTRADA / SAÍDA");
-        jButtonEntradaSaida.setBorderPainted(false);
-        jButtonEntradaSaida.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonEntradaSaida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEntradaSaidaActionPerformed(evt);
-            }
-        });
-        jButtonEntradaSaida.setBounds(300, 490, 190, 150);
-        jDesktopPaneInicial.add(jButtonEntradaSaida, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButtonBackup.setFont(new java.awt.Font("Arial Black", 0, 14));
-        jButtonBackup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/data.png"))); // NOI18N
-        jButtonBackup.setMnemonic('C');
-        jButtonBackup.setText("BACKUP");
-        jButtonBackup.setBorderPainted(false);
-        jButtonBackup.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonBackup.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonBackup.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBackupActionPerformed(evt);
-            }
-        });
-        jButtonBackup.setBounds(740, 140, 190, 150);
-        jDesktopPaneInicial.add(jButtonBackup, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButtonFornecedores.setFont(new java.awt.Font("Arial Black", 0, 14));
-        jButtonFornecedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fornecedor.png"))); // NOI18N
-        jButtonFornecedores.setMnemonic('M');
-        jButtonFornecedores.setText("FORNECEDORES");
-        jButtonFornecedores.setBorderPainted(false);
-        jButtonFornecedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonFornecedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonFornecedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFornecedoresActionPerformed(evt);
-            }
-        });
-        jButtonFornecedores.setBounds(740, 320, 190, 150);
-        jDesktopPaneInicial.add(jButtonFornecedores, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButtonRelatorioHistorico.setFont(new java.awt.Font("Arial Black", 0, 14));
+        jButtonRelatorioHistorico.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButtonRelatorioHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/report.png"))); // NOI18N
         jButtonRelatorioHistorico.setMnemonic('M');
         jButtonRelatorioHistorico.setText("RELATÓRIO  E/S");
@@ -268,10 +253,8 @@ public class Inicial extends javax.swing.JFrame {
                 jButtonRelatorioHistoricoActionPerformed(evt);
             }
         });
-        jButtonRelatorioHistorico.setBounds(520, 490, 190, 150);
-        jDesktopPaneInicial.add(jButtonRelatorioHistorico, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonUsuarios.setFont(new java.awt.Font("Arial Black", 0, 14));
+        jButtonUsuarios.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButtonUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/people.png"))); // NOI18N
         jButtonUsuarios.setMnemonic('M');
         jButtonUsuarios.setText("USUÁRIOS");
@@ -283,10 +266,47 @@ public class Inicial extends javax.swing.JFrame {
                 jButtonUsuariosActionPerformed(evt);
             }
         });
-        jButtonUsuarios.setBounds(520, 320, 190, 150);
-        jDesktopPaneInicial.add(jButtonUsuarios, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonSair.setFont(new java.awt.Font("Arial Black", 0, 14));
+        jButtonMateriais.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonMateriais.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/settings96.png"))); // NOI18N
+        jButtonMateriais.setMnemonic('C');
+        jButtonMateriais.setText("MATERIAIS");
+        jButtonMateriais.setBorderPainted(false);
+        jButtonMateriais.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonMateriais.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonMateriais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMateriaisActionPerformed(evt);
+            }
+        });
+
+        jButtonBackup.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonBackup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/data.png"))); // NOI18N
+        jButtonBackup.setMnemonic('C');
+        jButtonBackup.setText("BACKUP");
+        jButtonBackup.setBorderPainted(false);
+        jButtonBackup.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonBackup.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonBackup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackupActionPerformed(evt);
+            }
+        });
+
+        jButtonFornecedores.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonFornecedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fornecedor.png"))); // NOI18N
+        jButtonFornecedores.setMnemonic('M');
+        jButtonFornecedores.setText("FORNECEDORES");
+        jButtonFornecedores.setBorderPainted(false);
+        jButtonFornecedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonFornecedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonFornecedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFornecedoresActionPerformed(evt);
+            }
+        });
+
+        jButtonSair.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit96.png"))); // NOI18N
         jButtonSair.setMnemonic('M');
         jButtonSair.setText("SAIR");
@@ -298,28 +318,72 @@ public class Inicial extends javax.swing.JFrame {
                 jButtonSairActionPerformed(evt);
             }
         });
-        jButtonSair.setBounds(740, 490, 190, 150);
-        jDesktopPaneInicial.add(jButtonSair, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jComboBoxSkin.setMaximumRowCount(30);
-        jComboBoxSkin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar Skin", "Windows Classic", "Windows", "Motif", "Metal", "Nimbus", "Brown Sugar", "Dark Star", "Desert Blue", "Desert Bluer", "Desert Green", "Desert Red", "Desert Yellow", "Experience Blue ", "Experience Green", "Experience Royale", "Light Gray", "Silver", "Sky Blue", "Sky Bluer", "Sky Green", "Sky Krupp", "Sky Pink", "Sky Red", "Sky Yellow" }));
-        jComboBoxSkin.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBoxSkinItemStateChanged(evt);
-            }
-        });
-        jComboBoxSkin.setBounds(10, 10, 130, 20);
-        jDesktopPaneInicial.add(jComboBoxSkin, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        javax.swing.GroupLayout jPanelBotoesLayout = new javax.swing.GroupLayout(jPanelBotoes);
+        jPanelBotoes.setLayout(jPanelBotoesLayout);
+        jPanelBotoesLayout.setHorizontalGroup(
+            jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBotoesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNovoOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEntradaSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelBotoesLayout.createSequentialGroup()
+                        .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonMateriais, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelBotoesLayout.createSequentialGroup()
+                        .addComponent(jButtonRelatorioHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+        jPanelBotoesLayout.setVerticalGroup(
+            jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBotoesLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonMateriais, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNovoOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelBotoesLayout.createSequentialGroup()
+                        .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonRelatorioHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonEntradaSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelBotoesLayout.createSequentialGroup()
+                        .addComponent(jButtonFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        jPanelBotoes.setBounds(60, 90, 660, 550);
+        jDesktopPaneInicial.add(jPanelBotoes, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPaneInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
+            .addComponent(jDesktopPaneInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1024, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPaneInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPaneInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -966,6 +1030,7 @@ private javax.swing.UIManager.LookAndFeelInfo looks[];
     private javax.swing.JButton jButtonUsuarios;
     private javax.swing.JComboBox jComboBoxSkin;
     private javax.swing.JDesktopPane jDesktopPaneInicial;
+    private javax.swing.JPanel jPanelBotoes;
     // End of variables declaration//GEN-END:variables
 
 }
