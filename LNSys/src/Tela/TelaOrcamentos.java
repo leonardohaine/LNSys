@@ -280,18 +280,21 @@ public class TelaOrcamentos extends javax.swing.JInternalFrame {
 
         for(;x < linhas; x++){
            if(tableResultado.getRowCount() > 0){
-               quantidade = Double.valueOf(tableResultado.getValueAt(x, 2).toString()) ;//.replace(",", "."));
-               try{     //System.out.println("I4 "+i);
-               valorUnitario = dff.parse((String)tableResultado.getValueAt(x, 5)).doubleValue();
-               System.out.println("Quantidade: "+ quantidade+"\nValor Unitario: "+ valorUnitario);
+               
+               try{
+                   String qtd =(String) tableResultado.getValueAt(x, 2);
+                   quantidade = Double.valueOf(qtd);
+                        //System.out.println("I4 "+i);
+                   valorUnitario = dff.parse((String)tableResultado.getValueAt(x, 5)).doubleValue();
+                   System.out.println("Quantidade: "+ quantidade+"\nValor Unitario: "+ valorUnitario);
 
-               if (jTableMaterial.getSelectedColumn()== 0 || jTableMaterial.getSelectedColumn()== 1|| jTableMaterial.getSelectedColumn()== 2 || jTableMaterial.getSelectedColumn()== 3 || jTableMaterial.getSelectedColumn()== 4) {
-                   valorTotal = quantidade*valorUnitario;
-                   tableResultado.setValueAt(moeda(valorTotal), x, 6);
+                   if (jTableMaterial.getSelectedColumn()== 0 || jTableMaterial.getSelectedColumn()== 1|| jTableMaterial.getSelectedColumn()== 2 || jTableMaterial.getSelectedColumn()== 3 || jTableMaterial.getSelectedColumn()== 4) {
+                       valorTotal = quantidade*valorUnitario;
+                       tableResultado.setValueAt(moeda(valorTotal), x, 6);
 
-                }
+                   }
 
-                    valorTotalGeral += dff.parse((String)tableResultado.getValueAt(x, 6)).doubleValue();
+                   valorTotalGeral += dff.parse((String)tableResultado.getValueAt(x, 6)).doubleValue();
                 } catch (ParseException ex) {
                     Logger.getLogger(TelaOrcamentos.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(null,"Erro: "+ ex+"\n Causa: "+ ex.getCause(), "Atenção - Calculando valores", JOptionPane.INFORMATION_MESSAGE );

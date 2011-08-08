@@ -420,6 +420,7 @@ private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GE
         jTextFieldUsuario.setEditable(true);
         jTextFieldUsuario.requestFocus();
         jPasswordFieldSenha.setEditable(true);
+        jPasswordFieldConfSenha.setEditable(true);
         jCheckBoxClientes.setEnabled(true);
         jCheckBoxOrcamentos.setEnabled(true);
         jCheckBoxProdutos.setEnabled(true);

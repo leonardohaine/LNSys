@@ -305,7 +305,7 @@ private void jFormattedTextFieldValorKeyPressed(java.awt.event.KeyEvent evt) {//
                 Logger.getLogger(ConfirmaSaida.class.getName()).log(Level.SEVERE, null, ex);
             }
         //Double valor = Double.valueOf(jFormattedTextFieldValor.getText().replaceAll(",", "."));
-        int qtd= Integer.valueOf(jTextFieldQtd.getText());
+        double qtd = Double.valueOf(jTextFieldQtd.getText());
         double total = qtd * valor;
         jTextFieldTotal.setText(moeda(total));
         
