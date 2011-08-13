@@ -137,16 +137,20 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
 
      Icon green = new ImageIcon(this.getClass().getClassLoader().getResource("imagens/ledgreen22.png"));
      Icon red = new ImageIcon(this.getClass().getClassLoader().getResource("imagens/ledred22.png"));
+     Icon yellow = new ImageIcon(this.getClass().getClassLoader().getResource("imagens/ledyellow22.png"));
      // certifique-se da existencia da imagem "icon.gif" antes de executar
 //System.out.println("Estoque: "+ estoque + "\n Minimo: "+ minimo);
 
      int e = (Integer) table.getValueAt(row, 3);
      int m = (Integer) table.getValueAt(row, 4);
       //System.out.println("Estoque "+ e+ " Minimo "+ m);
-     if(e <= m && table.getColumnName(3).equals("Qtd Estoque") && table.getColumnName(4).equals("Qtd Miníma") ){
+     if(e == m && table.getColumnName(3).equals("Qtd Estoque") && table.getColumnName(4).equals("Qtd Miníma") ){
+       setBackground(table.getBackground());
+       setIcon(yellow);
+     } else if(e < m && table.getColumnName(3).equals("Qtd Estoque") && table.getColumnName(4).equals("Qtd Miníma")){
        setBackground(table.getBackground());
        setIcon(red);
-     } else {
+     }else if (e > m && table.getColumnName(3).equals("Qtd Estoque") && table.getColumnName(4).equals("Qtd Miníma")) {
        setBackground(table.getBackground());
        setIcon(green);
      }
@@ -333,6 +337,13 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMateriais = new javax.swing.JTable();
         jLabelRetorno = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("LISTA DE MATERIAIS - ENTRADA E SAÍDA");
@@ -444,7 +455,7 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jButtonAtualizar)
                 .addContainerGap())
         );
@@ -504,21 +515,65 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
         jLabelRetorno.setForeground(new java.awt.Color(255, 0, 0));
         jLabelRetorno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Legenda"));
+
+        jLabel4.setText("Estoque OK");
+
+        jLabel5.setText("Estoque Alerta");
+
+        jLabel6.setText("Estoque Baixo");
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ledgreen16.png"))); // NOI18N
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ledyellow16.png"))); // NOI18N
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ledred16.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7)
+            .addComponent(jLabel4)
+            .addComponent(jLabel8)
+            .addComponent(jLabel5)
+            .addComponent(jLabel9)
+            .addComponent(jLabel6)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
-                        .addComponent(jLabelRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -526,10 +581,15 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -559,15 +619,35 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
 
         //javax.swing.table.DefaultTableModel tableResultado = (javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
 
+        
+        Session sessao = HibernateUtil.getSessionFactory().openSession();// fabricaDeSessoes.openSession();
+        Transaction transacao = sessao.beginTransaction();
+
         if(jTextFieldCod.getText().equals("")){
-            
+
+            Query materiais = sessao.createQuery("from Materiais order by m.descricao, m.codmateriais");
+
+            //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
+            List listMateriais = materiais.list();
+            Iterator m = listMateriais.iterator();
+
+            javax.swing.table.DefaultTableModel tableResultado =(javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
+            tableResultado.setRowCount(0);
+            jLabelRetorno.setText("");
+
+            while(m.hasNext()){
+                 Materiais mat = (Materiais) m.next();
+
+                 tableResultado.addRow(new Object[] {mat.getCodmateriais(), mat.getDescricao(),mat.getUnidade(), mat.getQtdestoque(), mat.getQtdminima(), moeda(mat.getValor()), mat.getFornecedor(), sfd.format(mat.getDatacadastro()), ""});
+                 System.out.println("COD: "+ mat.getDescricao());
+                 //jTableMateriais.updateUI();
+            }
+
             //tableResultado.setRowCount(0);
-            Consulta = false;
+            //Consulta = false;
         }else{
             String codMaterial = jTextFieldCod.getText();
 
-            Session sessao = HibernateUtil.getSessionFactory().openSession();// fabricaDeSessoes.openSession();
-            Transaction transacao = sessao.beginTransaction();
             //Query consultaOrca = sessao.createQuery("from Orcamentos as o where o.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"' ");
 
             //Query consultaOrca = sessao.createQuery("select o, mo, c from Orcamentos as o, MateriaisOrcamentos as mo, Clientes as c where  o.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"' and mo.orcamentos = o.codorcamentos and o.clientes = c.codcliente order by o.codorcamentos, mo.codmateriais ");
@@ -625,9 +705,29 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
         boolean Consulta = true;
 
         javax.swing.table.DefaultTableModel tableResultado = (javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
+        Session sessao = HibernateUtil.getSessionFactory().openSession();
+        Transaction transacao = sessao.beginTransaction();
 
         if(jTextFieldDesc.getText().equals("")){
-            
+
+            Query materiais = sessao.createQuery("from Materiais m order by m.descricao, m.codmateriais");
+
+            //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
+            List listMateriais = materiais.list();
+            Iterator m = listMateriais.iterator();
+
+            tableResultado.setRowCount(0);
+            jLabelRetorno.setText("");
+
+            while(m.hasNext()){
+                 Materiais mat = (Materiais) m.next();
+
+                 tableResultado.addRow(new Object[] {mat.getCodmateriais(), mat.getDescricao(), mat.getUnidade(), mat.getQtdestoque(), mat.getQtdminima(), moeda(mat.getValor()), mat.getFornecedor(), sfd.format(mat.getDatacadastro()), ""});
+                 System.out.println("Desc: "+ mat.getDescricao());
+                 jTableMateriais.updateUI();
+            }
+
+
             //tableResultado.setRowCount(0);
             Consulta = false;
             //return;
@@ -635,8 +735,7 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
             String descricaoMaterial = jTextFieldDesc.getText();
 
             //mostraTabelaVazia();
-            Session sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction transacao = sessao.beginTransaction();
+           
             //Query consultaOrca = sessao.createQuery("from Orcamentos as o where o.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"' ");
 
             Query materiais = sessao.createQuery("from Materiais m where m.descricao LIKE '"+descricaoMaterial+"%' order by m.descricao, m.codmateriais");
@@ -908,26 +1007,29 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
                     cod = (String) modelo.getValueAt(row, 0);
                     desc = (String) modelo.getValueAt(row, 1);
                     unidade = (String) modelo.getValueAt(row, 2);
-                     estoque = (Integer) modelo.getValueAt(row, 3);
-                     minimo = (Integer) modelo.getValueAt(row, 4);
+                    estoque = (Integer) modelo.getValueAt(row, 3);
+                    minimo = (Integer) modelo.getValueAt(row, 4);
                     
-                        valor = dff.parse((String) modelo.getValueAt(row, 5)).doubleValue();
-                    } catch (ParseException ex) {
-                        Logger.getLogger(SaidaMaterial.class.getName()).log(Level.SEVERE, null, ex);
-                        JOptionPane.showMessageDialog(null, "Erro native conversão de valores: "+ "\nCausa: "+ex.getCause());
-                    }
-                    String fornecedor = (String) modelo.getValueAt(row, 6);
-                     try {
-                        data = (Date) sfd.parse((String)modelo.getValueAt(row, 7));
-                    } catch (ParseException ex) {
-                        Logger.getLogger(SaidaMaterial.class.getName()).log(Level.SEVERE, null, ex);
-                        JOptionPane.showMessageDialog(null, "Erro native conversão de data: "+ "\nCausa: "+ex.getCause());
-                    }
+                    valor = dff.parse((String) modelo.getValueAt(row, 5)).doubleValue();
+                } catch (ParseException ex) {
+                    Logger.getLogger(SaidaMaterial.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Erro native conversão de valores: "+ "\nCausa: "+ex.getCause());
+                }
+
+                String fornecedor = (String) modelo.getValueAt(row, 6);
+
+                try {
+                    data = (Date) sfd.parse((String)modelo.getValueAt(row, 7));
+                } catch (ParseException ex) {
+                    Logger.getLogger(SaidaMaterial.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Erro native conversão de data: "+ "\nCausa: "+ex.getCause());
+                }
 
                 new ConfirmaSaida(inicial, true, cod, desc, dinheiro, qtd).setVisible(true);
 
                 Session sessao = HibernateUtil.getSessionFactory().openSession();
                 Transaction transacao = sessao.beginTransaction();
+
                 modelo.setValueAt(ConfirmaSaida.qtdVenda, row, 3);
                 modelo.setValueAt(moeda(ConfirmaSaida.valor), row, 5);
                 jTableMateriais.updateUI();
@@ -1026,7 +1128,27 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
 
         javax.swing.table.DefaultTableModel tableResultado = (javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
 
+        Session sessao = HibernateUtil.getSessionFactory().openSession();
+        Transaction transacao = sessao.beginTransaction();
+
         if(jTextFieldFornecedor.getText().equals("")){
+
+            Query materiais = sessao.createQuery("from Materiais m order by m.descricao, m.codmateriais");
+
+            //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
+            List listMateriais = materiais.list();
+            Iterator m = listMateriais.iterator();
+
+            tableResultado.setRowCount(0);
+            jLabelRetorno.setText("");
+
+            while(m.hasNext()){
+                 Materiais mat = (Materiais) m.next();
+
+                 tableResultado.addRow(new Object[] {mat.getCodmateriais(), mat.getDescricao(), mat.getUnidade(), mat.getQtdestoque(), mat.getQtdminima(), moeda(mat.getValor()), mat.getFornecedor(), sfd.format(mat.getDatacadastro()), ""});
+                 System.out.println("Desc: "+ mat.getDescricao());
+                 jTableMateriais.updateUI();
+            }
 
             //tableResultado.setRowCount(0);
             Consulta = false;
@@ -1035,8 +1157,7 @@ public class SaidaMaterial extends javax.swing.JInternalFrame {
             String fornecedorMaterial = jTextFieldFornecedor.getText();
 
             //mostraTabelaVazia();
-            Session sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction transacao = sessao.beginTransaction();
+            
             //Query consultaOrca = sessao.createQuery("from Orcamentos as o where o.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"' ");
 
             Query materiais = sessao.createQuery("from Materiais m where m.fornecedor LIKE '"+fornecedorMaterial+"%' order by m.descricao, m.codmateriais");
@@ -1114,8 +1235,15 @@ public int getNextvalMateriais(){
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelRetorno;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableMateriais;
     private javax.swing.JTextField jTextFieldCod;

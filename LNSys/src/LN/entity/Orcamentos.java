@@ -39,7 +39,7 @@ public class Orcamentos  implements java.io.Serializable {
     }
     //public Orcamentos(String codorcamentos, Clientes clientes, String cliente, String ac, String unidade, String solicitante, String referente, String observacoes, String status, Date datacadastro, String local, String pedido, String descricao, String prazoentrega, String condicoespagamento, String validadeproposta){//, Set materiaisOrcamentoses) {
     public Orcamentos(String codorcamentos, Clientes clientes, String cliente, String ac, String unidade, String solicitante, String referente, String observacoes, String status, Date datacadastro, String local, String pedido, String descricao, String prazoEntrega, String condicoesPagamento, String validadeProposta){//, Set materiaisOrcamentoses) {
-        this.codorcamentos = codorcamentos;
+       this.codorcamentos = codorcamentos;
        this.clientes = clientes;
        this.cliente = cliente;
        this.ac = ac;
@@ -52,9 +52,9 @@ public class Orcamentos  implements java.io.Serializable {
        this.local = local;
        this.pedido = pedido;
        this.descricao = descricao;
-       this.prazoentrega = prazoentrega;
-       this.condicoespagamento = condicoespagamento;
-       this.validadeproposta = validadeproposta;
+       this.prazoentrega = prazoEntrega;
+       this.condicoespagamento = condicoesPagamento;
+       this.validadeproposta = validadeProposta;
        this.materiaisOrcamentoses = materiaisOrcamentoses;
     }
    

@@ -369,17 +369,17 @@ private void jButtonVisualActionPerformed(java.awt.event.ActionEvent evt) {//GEN
             String printer = "hp6";
             
             System.out.println("printer === " + printer);
-//            PrintServiceAttributeSet servAttSet = new HashPrintServiceAttributeSet();
-//            servAttSet.add(new PrinterName(printer, null)); //comentei porque por enquanto esta abrindo o dialog.
-//            JRBeanCollectionDataSource list = new JRBeanCollectionDataSource(listHistorico);
-//            //JRResultSetDataSource jrResultSetDataSource = new JRResultSetDataSource(rs);
+//          PrintServiceAttributeSet servAttSet = new HashPrintServiceAttributeSet();
+//          servAttSet.add(new PrinterName(printer, null)); //comentei porque por enquanto esta abrindo o dialog.
+//          JRBeanCollectionDataSource list = new JRBeanCollectionDataSource(listHistorico);
+//          //JRResultSetDataSource jrResultSetDataSource = new JRResultSetDataSource(rs);
 //
-//            JasperPrint impressao = JasperManager.fillReport(rela, parametros, list);
+//          JasperPrint impressao = JasperManager.fillReport(rela, parametros, list);
 
 
             JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(listHistorico);
-        //JasperReport jasperReport = JasperManager.loadReport(JRLoader.loadObject(this.getClass().getClassLoader().getResource("Relatorio/HistoricoEntradaSaida.jasper")));
-        JasperPrint jasperPrint = JasperFillManager.fillReport(rela,parametros, ds);
+            //JasperReport jasperReport = JasperManager.loadReport(JRLoader.loadObject(this.getClass().getClassLoader().getResource("Relatorio/HistoricoEntradaSaida.jasper")));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(rela,parametros, ds);
 
 
 

@@ -72,6 +72,7 @@ public class CadMateriais extends javax.swing.JInternalFrame {
         jButtonDeletar.setEnabled(false);
 //        jTextFieldPesqCodigo.setEditable(false);
 //        jTextFieldPesqDescricao.setEditable(false);
+        jTextFieldPesquisa.setVisible(false);
 
     Dimension centraliza = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation((centraliza.width-this.getSize().width)/2,
