@@ -46,48 +46,6 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="jComboBoxSkin">
-          <Properties>
-            <Property name="maximumRowCount" type="int" value="30"/>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="25">
-                <StringItem index="0" value="Selecionar Skin"/>
-                <StringItem index="1" value="Windows Classic"/>
-                <StringItem index="2" value="Windows"/>
-                <StringItem index="3" value="Motif"/>
-                <StringItem index="4" value="Metal"/>
-                <StringItem index="5" value="Nimbus"/>
-                <StringItem index="6" value="Brown Sugar"/>
-                <StringItem index="7" value="Dark Star"/>
-                <StringItem index="8" value="Desert Blue"/>
-                <StringItem index="9" value="Desert Bluer"/>
-                <StringItem index="10" value="Desert Green"/>
-                <StringItem index="11" value="Desert Red"/>
-                <StringItem index="12" value="Desert Yellow"/>
-                <StringItem index="13" value="Experience Blue "/>
-                <StringItem index="14" value="Experience Green"/>
-                <StringItem index="15" value="Experience Royale"/>
-                <StringItem index="16" value="Light Gray"/>
-                <StringItem index="17" value="Silver"/>
-                <StringItem index="18" value="Sky Blue"/>
-                <StringItem index="19" value="Sky Bluer"/>
-                <StringItem index="20" value="Sky Green"/>
-                <StringItem index="21" value="Sky Krupp"/>
-                <StringItem index="22" value="Sky Pink"/>
-                <StringItem index="23" value="Sky Red"/>
-                <StringItem index="24" value="Sky Yellow"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxSkinItemStateChanged"/>
-          </Events>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="10" y="10" width="130" height="-1" layer="0" position="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Container class="javax.swing.JPanel" name="jPanelBotoes">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -96,7 +54,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="60" y="90" width="660" height="550" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="60" y="70" width="660" height="570" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
 
@@ -106,27 +64,37 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonClientes" min="-2" pref="190" max="-2" attributes="0"/>
-                          <Component id="jButtonNovoOrcamento" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
-                          <Component id="jButtonEntradaSaida" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButtonMateriais" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
-                                  <Component id="jButtonUsuarios" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jButtonFornecedores" min="-2" pref="190" max="-2" attributes="0"/>
-                                  <Component id="jButtonBackup" min="-2" pref="190" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                              <Component id="jComboBoxSkin" min="-2" pref="130" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                              <Component id="jButtonCaixa" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="1">
-                              <Component id="jButtonRelatorioHistorico" min="-2" pref="190" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jButtonSair" min="-2" pref="190" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jButtonClientes" min="-2" pref="190" max="-2" attributes="0"/>
+                                  <Component id="jButtonNovoOrcamento" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                  <Component id="jButtonEntradaSaida" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jButtonMateriais" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                          <Component id="jButtonUsuarios" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jButtonFornecedores" min="-2" pref="190" max="-2" attributes="0"/>
+                                          <Component id="jButtonBackup" min="-2" pref="190" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="1">
+                                      <Component id="jButtonRelatorioHistorico" min="-2" pref="190" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jButtonSair" min="-2" pref="190" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace pref="13" max="32767" attributes="0"/>
@@ -161,7 +129,18 @@
                               <Component id="jButtonSair" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="23" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace pref="14" max="32767" attributes="0"/>
+                              <Component id="jComboBoxSkin" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jButtonCaixa" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -328,6 +307,51 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSairActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBoxSkin">
+              <Properties>
+                <Property name="maximumRowCount" type="int" value="30"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="25">
+                    <StringItem index="0" value="Selecionar Skin"/>
+                    <StringItem index="1" value="Windows Classic"/>
+                    <StringItem index="2" value="Windows"/>
+                    <StringItem index="3" value="Motif"/>
+                    <StringItem index="4" value="Metal"/>
+                    <StringItem index="5" value="Nimbus"/>
+                    <StringItem index="6" value="Brown Sugar"/>
+                    <StringItem index="7" value="Dark Star"/>
+                    <StringItem index="8" value="Desert Blue"/>
+                    <StringItem index="9" value="Desert Bluer"/>
+                    <StringItem index="10" value="Desert Green"/>
+                    <StringItem index="11" value="Desert Red"/>
+                    <StringItem index="12" value="Desert Yellow"/>
+                    <StringItem index="13" value="Experience Blue "/>
+                    <StringItem index="14" value="Experience Green"/>
+                    <StringItem index="15" value="Experience Royale"/>
+                    <StringItem index="16" value="Light Gray"/>
+                    <StringItem index="17" value="Silver"/>
+                    <StringItem index="18" value="Sky Blue"/>
+                    <StringItem index="19" value="Sky Bluer"/>
+                    <StringItem index="20" value="Sky Green"/>
+                    <StringItem index="21" value="Sky Krupp"/>
+                    <StringItem index="22" value="Sky Pink"/>
+                    <StringItem index="23" value="Sky Red"/>
+                    <StringItem index="24" value="Sky Yellow"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxSkinItemStateChanged"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonCaixa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="CAIXA"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCaixaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

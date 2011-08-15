@@ -82,16 +82,16 @@ public class Saida extends javax.swing.JInternalFrame {
 //
             //String data = sfd.format(new Date());
 
-            Session sessao = HibernateUtil.getSessionFactory().openSession();// fabricaDeSessoes.openSession();
-            Transaction transacao = sessao.beginTransaction();
+            //Session sessao = HibernateUtil.getSessionFactory().openSession();// fabricaDeSessoes.openSession();
+            //Transaction transacao = sessao.beginTransaction();
             //Query consultaOrca = sessao.createQuery("from Orcamentos as o where o.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"' ");
 
             //Query consultaOrca = sessao.createQuery("select o, mo, c from Orcamentos as o, MateriaisOrcamentos as mo, Clientes as c where  o.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"' and mo.orcamentos = o.codorcamentos and o.clientes = c.codcliente order by o.codorcamentos, mo.codmateriais ");
 
-            Query materiais = sessao.createQuery("from Materiais m order by m.descricao, m.codmateriais");
-            List listMateriais = materiais.list();
+            //Query materiais = sessao.createQuery("from Materiais m order by m.descricao, m.codmateriais");
+            //List listMateriais = materiais.list();
 
-            mostraLista(listMateriais);
+            //mostraLista(listMateriais);
  
             //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
 //            List listMateriais = materiais.list();
@@ -113,12 +113,12 @@ public class Saida extends javax.swing.JInternalFrame {
 //
 //            }
 //
-            jTableMateriais.updateUI();
-            transacao.commit();
-            sessao.close();
+            jTableCaixa.updateUI();
+            //transacao.commit();
+            //sessao.close();
             
     }
-
+/*
     public class ImagemTable extends JLabel implements TableCellRenderer{
 
   public ImagemTable(int est, int min){
@@ -164,9 +164,9 @@ public class Saida extends javax.swing.JInternalFrame {
   protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {}
   public void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {}
 }
-
+*/
  private void mostraLista(List <Materiais> materiais){
-             jTableMateriais.setModel(new javax.swing.table.DefaultTableModel(
+             jTableCaixa.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][][] {
                     {null, null, null, null, null, null, null, null, null},
                 },
@@ -184,7 +184,7 @@ public class Saida extends javax.swing.JInternalFrame {
 //        TableColumn column = jTableMateriais.getColumnModel().getColumn(2);
 //	column.setCellRenderer(tcr);
 
-        javax.swing.table.DefaultTableModel tableResultado =(javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
+        javax.swing.table.DefaultTableModel tableResultado =(javax.swing.table.DefaultTableModel)jTableCaixa.getModel();
         tableResultado.setRowCount(0);
 
          
@@ -199,9 +199,9 @@ public class Saida extends javax.swing.JInternalFrame {
 
                 //System.out.println("Estoque " + mat.getQtdestoque());
 
-                TableCellRenderer tcr = new ImagemTable(mat.getQtdestoque(), mat.getQtdminima());
-                TableColumn column = jTableMateriais.getColumnModel().getColumn(8);
-                column.setCellRenderer(tcr);
+                //TableCellRenderer tcr = new ImagemTable(mat.getQtdestoque(), mat.getQtdminima());
+                //TableColumn column = jTableCaixa.getColumnModel().getColumn(8);
+                //column.setCellRenderer(tcr);
 
                 tableResultado.addRow(new Object[] {mat.getCodmateriais(), mat.getDescricao(), mat.getUnidade(), mat.getQtdestoque(), mat.getQtdminima(), moeda(mat.getValor()), mat.getFornecedor(), sfd.format(mat.getDatacadastro()),new ImageIcon(this.getClass().getClassLoader().getResource("imagens/Bvermelha.gif"))});
      }
@@ -216,7 +216,7 @@ public class Saida extends javax.swing.JInternalFrame {
 
         //System.out.println("COR - >"+((tableResultado.getRowCount()%2==0) ? Color.BLACK : Color.GREEN));
 
-        jTableMateriais.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        jTableCaixa.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
         DefaultTableCellRenderer direita = new DefaultTableCellRenderer();
         DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
@@ -225,40 +225,40 @@ public class Saida extends javax.swing.JInternalFrame {
         centralizado.setHorizontalAlignment(SwingConstants.CENTER);
         direita.setHorizontalAlignment(SwingConstants.RIGHT);
         esquerda.setHorizontalAlignment(SwingConstants.LEFT);
-        jTableMateriais.getColumnModel().getColumn(0).setCellRenderer(centralizado);
-        jTableMateriais.getColumnModel().getColumn(1).setCellRenderer(esquerda);
-        jTableMateriais.getColumnModel().getColumn(2).setCellRenderer(centralizado);
-        jTableMateriais.getColumnModel().getColumn(3).setCellRenderer(centralizado);
-        jTableMateriais.getColumnModel().getColumn(4).setCellRenderer(centralizado);
-        jTableMateriais.getColumnModel().getColumn(5).setCellRenderer(direita);
-        jTableMateriais.getColumnModel().getColumn(6).setCellRenderer(esquerda);
-        jTableMateriais.getColumnModel().getColumn(7).setCellRenderer(centralizado);
-        jTableMateriais.getColumnModel().getColumn(8).setCellRenderer(centralizado);
+        jTableCaixa.getColumnModel().getColumn(0).setCellRenderer(centralizado);//cod
+        jTableCaixa.getColumnModel().getColumn(1).setCellRenderer(esquerda);//desc
+        jTableCaixa.getColumnModel().getColumn(2).setCellRenderer(centralizado);//unid
+        jTableCaixa.getColumnModel().getColumn(3).setCellRenderer(centralizado);//qtd
+        jTableCaixa.getColumnModel().getColumn(4).setCellRenderer(direita);//valor
+        jTableCaixa.getColumnModel().getColumn(5).setCellRenderer(direita);//total
+       // jTableCaixa.getColumnModel().getColumn(6).setCellRenderer(esquerda);
+        //jTableCaixa.getColumnModel().getColumn(7).setCellRenderer(centralizado);
+        //jTableCaixa.getColumnModel().getColumn(8).setCellRenderer(centralizado);
         //jTableMaterial.getColumnModel().getColumn(6).setCellRenderer(direita);
         //jTableMaterial.getColumnModel().getColumn(7).setCellRenderer(esquerda);
         //jTableMaterial.getColumnModel().getColumn(8).setCellRenderer(centralizado);
         //jTableMaterial.getColumnModel().getColumn(9).setCellRenderer(centralizado);
         System.out.println("Ajustando tamanho das colunas");
-        jTableMateriais.getColumnModel().getColumn(0).setPreferredWidth(60); //codigo
-        jTableMateriais.getColumnModel().getColumn(0).setMinWidth(60);
+        jTableCaixa.getColumnModel().getColumn(0).setPreferredWidth(60); //codigo
+        jTableCaixa.getColumnModel().getColumn(0).setMinWidth(60);
         //jTableMateriais.getColumnModel().getColumn(0).setMaxWidth(30);
-        jTableMateriais.getColumnModel().getColumn(1).setPreferredWidth(280);//descricao
-        jTableMateriais.getColumnModel().getColumn(1).setMinWidth(280);
-        jTableMateriais.getColumnModel().getColumn(2).setPreferredWidth(75);//85 Unid
-        jTableMateriais.getColumnModel().getColumn(2).setMinWidth(75);
-         jTableMateriais.getColumnModel().getColumn(3).setPreferredWidth(75);//85 QUANT estoque
-        jTableMateriais.getColumnModel().getColumn(3).setMinWidth(75);
-        jTableMateriais.getColumnModel().getColumn(4).setPreferredWidth(75);//65 quant minima
-        jTableMateriais.getColumnModel().getColumn(4).setMinWidth(75);
-        jTableMateriais.getColumnModel().getColumn(5).setPreferredWidth(85);//265 valor
-        jTableMateriais.getColumnModel().getColumn(5).setMinWidth(85);
-        jTableMateriais.getColumnModel().getColumn(6).setPreferredWidth(140);//105 fornecedor
-        jTableMateriais.getColumnModel().getColumn(6).setMinWidth(140);
-        jTableMateriais.getColumnModel().getColumn(7).setPreferredWidth(100);//85 data
-        jTableMateriais.getColumnModel().getColumn(7).setMinWidth(100);
+        jTableCaixa.getColumnModel().getColumn(1).setPreferredWidth(180);//descricao
+        jTableCaixa.getColumnModel().getColumn(1).setMinWidth(180);
+        jTableCaixa.getColumnModel().getColumn(2).setPreferredWidth(45);//85 Unid
+        jTableCaixa.getColumnModel().getColumn(2).setMinWidth(45);
+         jTableCaixa.getColumnModel().getColumn(3).setPreferredWidth(45);//85 QUANT estoque
+        jTableCaixa.getColumnModel().getColumn(3).setMinWidth(45);
+        jTableCaixa.getColumnModel().getColumn(4).setPreferredWidth(75);//65 quant minima
+        jTableCaixa.getColumnModel().getColumn(4).setMinWidth(75);
+        jTableCaixa.getColumnModel().getColumn(5).setPreferredWidth(85);//265 valor
+        jTableCaixa.getColumnModel().getColumn(5).setMinWidth(85);
+        //jTableCaixa.getColumnModel().getColumn(6).setPreferredWidth(140);//105 fornecedor
+        //jTableCaixa.getColumnModel().getColumn(6).setMinWidth(140);
+        //jTableCaixa.getColumnModel().getColumn(7).setPreferredWidth(100);//85 data
+        //jTableCaixa.getColumnModel().getColumn(7).setMinWidth(100);
 
-        jTableMateriais.getColumnModel().getColumn(8).setPreferredWidth(24);//21 status
-        jTableMateriais.getColumnModel().getColumn(8).setMinWidth(24);
+        //jTableCaixa.getColumnModel().getColumn(8).setPreferredWidth(24);//21 status
+        //jTableCaixa.getColumnModel().getColumn(8).setMinWidth(24);
         //jTableMaterial.getColumnModel().getColumn(5).setPreferredWidth(0);//COR
         //jTableResultado.getColumnModel().getColumn(6).setPreferredWidth(60);//DINHEIRO
         //jTableMaterial.getColumnModel().getColumn(6).setPreferredWidth(45);//QTD
@@ -278,12 +278,12 @@ public class Saida extends javax.swing.JInternalFrame {
     private void mostraTabelaVazia(){
            //montaTabela();
 
-            jTableMateriais.setModel(new javax.swing.table.DefaultTableModel(
+            jTableCaixa.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][][] {
                     {null, null, null, null, null, null, null, null, null},
                 },
                 new String [] {
-                    "Código","Descrição","Unid.", "Qtd Estoque", "Qtd Miníma", "Valor", "Fornecedor", "Data Cadastro", "OK"
+                    "Código","Descrição","Unid.", "Qtd", "Valor", "Total"
                 }
             ){
             public boolean isCellEditable(int row, int col) {
@@ -292,7 +292,7 @@ public class Saida extends javax.swing.JInternalFrame {
                  
             }
             });
-        javax.swing.table.DefaultTableModel tableResultado =(javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
+        javax.swing.table.DefaultTableModel tableResultado =(javax.swing.table.DefaultTableModel)jTableCaixa.getModel();
         tableResultado.setRowCount(0);
         montaTabela();
 //        tableResultado.getRowCount();
@@ -326,39 +326,20 @@ public class Saida extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextFieldCod = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextFieldDesc = new javax.swing.JTextField();
-        jButtonAtualizar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jTextFieldFornecedor = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableMateriais = new javax.swing.JTable();
-        jLabelRetorno = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jTableCaixa = new javax.swing.JTable();
         jLabelTroco = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jTextFieldValorRecebido = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabelTotal = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldQuant = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel15 = new javax.swing.JLabel();
+        jTextFieldCodProduto = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("LISTA DE MATERIAIS - ENTRADA E SAÍDA");
+        setTitle("CAIXA -  EMPÓRIO JAGUARÉ");
+        setPreferredSize(new java.awt.Dimension(800, 578));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -378,225 +359,76 @@ public class Saida extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PESQUISA", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setText("Código:");
-
-        jTextFieldCod.setFont(new java.awt.Font("Arial", 1, 12));
-        jTextFieldCod.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldCodFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldCodFocusLost(evt);
-            }
-        });
-        jTextFieldCod.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldCodKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldCodKeyReleased(evt);
-            }
-        });
-
-        jLabel2.setText("Descrição:");
-
-        jTextFieldDesc.setFont(new java.awt.Font("Arial", 1, 12));
-        jTextFieldDesc.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldDescFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldDescFocusLost(evt);
-            }
-        });
-        jTextFieldDesc.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldDescKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldDescKeyReleased(evt);
-            }
-        });
-
-        jButtonAtualizar.setFont(new java.awt.Font("Arial", 1, 12));
-        jButtonAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/btnRefreshDisplay.png"))); // NOI18N
-        jButtonAtualizar.setText("Atualizar");
-        jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAtualizarActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Fornecedor:");
-
-        jTextFieldFornecedor.setFont(new java.awt.Font("Arial", 1, 12));
-        jTextFieldFornecedor.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldFornecedorFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldFornecedorFocusLost(evt);
-            }
-        });
-        jTextFieldFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldFornecedorKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldFornecedorKeyReleased(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldCod, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jButtonAtualizar)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextFieldDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextFieldCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextFieldFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAtualizar))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-
-        jTableMateriais.setAutoCreateRowSorter(true);
-        jTableMateriais.setBackground(new java.awt.Color(0, 121, 76));
-        jTableMateriais.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jTableMateriais.setForeground(new java.awt.Color(255, 255, 255));
-        jTableMateriais.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCaixa.setAutoCreateRowSorter(true);
+        jTableCaixa.setBackground(new java.awt.Color(0, 121, 76));
+        jTableCaixa.setFont(new java.awt.Font("Arial", 1, 16));
+        jTableCaixa.setForeground(new java.awt.Color(255, 255, 255));
+        jTableCaixa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Descrição", "Unid Estoque", "Valor Unitario"
+                "Código", "Descrição", "Unid.", "Quantidade", "Valor Unitario", "Total"
             }
-        ));
-        jTableMateriais.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jTableMateriais.setFillsViewportHeight(true);
-        jTableMateriais.setGridColor(new java.awt.Color(255, 255, 255));
-        jTableMateriais.setRowHeight(20);
-        jTableMateriais.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        jTableMateriais.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jTableMateriais.getTableHeader().setResizingAllowed(false);
-        jTableMateriais.getTableHeader().setReorderingAllowed(false);
-        jTableMateriais.setUpdateSelectionOnSort(false);
-        jTableMateriais.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableMateriaisMouseClicked(evt);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jTableMateriais.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTableCaixa.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTableCaixa.setFillsViewportHeight(true);
+        jTableCaixa.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableCaixa.setRowHeight(25);
+        jTableCaixa.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTableCaixa.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jTableCaixa.getTableHeader().setResizingAllowed(false);
+        jTableCaixa.getTableHeader().setReorderingAllowed(false);
+        jTableCaixa.setUpdateSelectionOnSort(false);
+        jTableCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableCaixaMouseClicked(evt);
+            }
+        });
+        jTableCaixa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTableMateriaisKeyPressed(evt);
+                jTableCaixaKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTableMateriaisKeyReleased(evt);
+                jTableCaixaKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(jTableMateriais);
+        jScrollPane1.setViewportView(jTableCaixa);
 
-        jLabelRetorno.setForeground(new java.awt.Color(255, 0, 0));
-        jLabelRetorno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTroco.setFont(new java.awt.Font("Arial Black", 0, 24));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Legenda"));
+        jLabel13.setText("Quantidade:");
 
-        jLabel4.setText("Estoque OK");
-
-        jLabel5.setText("Estoque Alerta");
-
-        jLabel6.setText("Estoque Baixo");
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ledgreen16.png"))); // NOI18N
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ledyellow16.png"))); // NOI18N
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ledred16.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7)
-            .addComponent(jLabel4)
-            .addComponent(jLabel8)
-            .addComponent(jLabel5)
-            .addComponent(jLabel9)
-            .addComponent(jLabel6)
-        );
-
-        jLabel10.setFont(new java.awt.Font("Arial Black", 0, 24));
-        jLabel10.setText("Troco:");
-
-        jLabelTroco.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-
-        jLabel11.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jLabel11.setText("Valor Total:");
-
-        jTextFieldValorRecebido.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-
-        jLabel12.setFont(new java.awt.Font("Arial Black", 0, 24));
-        jLabel12.setText("Valor Recebido:");
-
-        jLabelTotal.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-
-        jLabel13.setText("Unidade:");
-
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("1");
+        jTextFieldQuant.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldQuant.setText("1");
 
         jLabel14.setText("Cód Produto:");
 
-        jComboBox1.setMaximumRowCount(10);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DINHERIRO", "DÉBITO", "CRÉDITO 1X", "CRÉDITO 2X", "CRÉDITO 3X", "CRÉDITO 4X", "CRÉDITO 5X", "CRÉDITO 6X", " " }));
+        jTextFieldCodProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldCodProdutoKeyPressed(evt);
+            }
+        });
 
-        jLabel15.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jLabel15.setText("Pagamento em:");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/search-32.png"))); // NOI18N
+        jButton1.setText("CONSULTAR [F4]");
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancel-32.png"))); // NOI18N
+        jButton2.setText("Excluir Item");
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/door-32.png"))); // NOI18N
+        jButton3.setText("FECHAR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -606,293 +438,57 @@ public class Saida extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                                .addComponent(jLabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel10))
-                                .addGap(24, 24, 24)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelTroco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldValorRecebido, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)))
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel13))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldQuant, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addGap(41, 41, 41)
-                                .addComponent(jComboBox1, 0, 206, Short.MAX_VALUE)))
-                        .addGap(10, 10, 10)))
+                                .addComponent(jButton1)
+                                .addGap(49, 49, 49)
+                                .addComponent(jButton3)
+                                .addGap(47, 47, 47)
+                                .addComponent(jButton2)))
+                        .addGap(1185, 1185, 1185)
+                        .addComponent(jLabelTroco))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldQuant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(85, 85, 85)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jTextFieldValorRecebido, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTroco, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel14)
+                    .addComponent(jTextFieldCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabelRetorno, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
+                        .addComponent(jLabelTroco, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3))
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldCodFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldCodFocusGained
-//        jTextFieldCod.setBackground(Color.GREEN);
-//        jTextFieldCod.setForeground(Color.WHITE);
-        jTextFieldDesc.setText("");
-}//GEN-LAST:event_jTextFieldCodFocusGained
-
-    private void jTextFieldCodFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldCodFocusLost
-//        jTextFieldCod.setBackground(Color.green);
-//        jTextFieldCod.setForeground(Color.black);
-}//GEN-LAST:event_jTextFieldCodFocusLost
-
-    private void jTextFieldCodKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
-            jTableMateriais.requestFocus();
-            evt.setKeyCode(java.awt.event.KeyEvent.VK_ENTER);
-
-        }
-}//GEN-LAST:event_jTextFieldCodKeyPressed
-
-    private void jTextFieldCodKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodKeyReleased
-        boolean Consulta = true;
-
-        //javax.swing.table.DefaultTableModel tableResultado = (javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
-
-        
-        Session sessao = HibernateUtil.getSessionFactory().openSession();// fabricaDeSessoes.openSession();
-        Transaction transacao = sessao.beginTransaction();
-
-        if(jTextFieldCod.getText().equals("")){
-
-            Query materiais = sessao.createQuery("from Materiais order by m.descricao, m.codmateriais");
-
-            //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
-            List listMateriais = materiais.list();
-            Iterator m = listMateriais.iterator();
-
-            javax.swing.table.DefaultTableModel tableResultado =(javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
-            tableResultado.setRowCount(0);
-            jLabelRetorno.setText("");
-
-            while(m.hasNext()){
-                 Materiais mat = (Materiais) m.next();
-
-                 tableResultado.addRow(new Object[] {mat.getCodmateriais(), mat.getDescricao(),mat.getUnidade(), mat.getQtdestoque(), mat.getQtdminima(), moeda(mat.getValor()), mat.getFornecedor(), sfd.format(mat.getDatacadastro()), ""});
-                 System.out.println("COD: "+ mat.getDescricao());
-                 //jTableMateriais.updateUI();
-            }
-
-            //tableResultado.setRowCount(0);
-            //Consulta = false;
-        }else{
-            String codMaterial = jTextFieldCod.getText();
-
-            //Query consultaOrca = sessao.createQuery("from Orcamentos as o where o.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"' ");
-
-            //Query consultaOrca = sessao.createQuery("select o, mo, c from Orcamentos as o, MateriaisOrcamentos as mo, Clientes as c where  o.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"' and mo.orcamentos = o.codorcamentos and o.clientes = c.codcliente order by o.codorcamentos, mo.codmateriais ");
-
-            Query materiais = sessao.createQuery("from Materiais m where m.codmateriais like '"+codMaterial+"%' order by m.descricao, m.codmateriais");
-
-            //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
-            List listMateriais = materiais.list();
-            Iterator m = listMateriais.iterator();
-
-            javax.swing.table.DefaultTableModel tableResultado =(javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
-            tableResultado.setRowCount(0);
-            jLabelRetorno.setText("");
-
-            while(m.hasNext()){
-                 Materiais mat = (Materiais) m.next();
-
-                 tableResultado.addRow(new Object[] {mat.getCodmateriais(), mat.getDescricao(),mat.getUnidade(), mat.getQtdestoque(), mat.getQtdminima(), moeda(mat.getValor()), mat.getFornecedor(), sfd.format(mat.getDatacadastro()), ""});
-                 System.out.println("COD: "+ mat.getDescricao());
-                 //jTableMateriais.updateUI();
-            }
-
-            if (listMateriais.isEmpty()) {
-
-                jLabelRetorno.setText("Nenhum material encontrado com este código.!!");
-                jTextFieldCod.requestFocus();
-                return ;
-            }
-
-            transacao.commit();
-            sessao.close();
-        }
-}//GEN-LAST:event_jTextFieldCodKeyReleased
-
-    private void jTextFieldDescFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDescFocusGained
-//        jTextFieldDesc.setBackground(Color.gray);
-//        jTextFieldDesc.setForeground(Color.WHITE);
-        jTextFieldCod.setText("");
-}//GEN-LAST:event_jTextFieldDescFocusGained
-
-    private void jTextFieldDescFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDescFocusLost
-//        jTextFieldDesc.setBackground(Color.white);
-//        jTextFieldDesc.setForeground(Color.black);
-}//GEN-LAST:event_jTextFieldDescFocusLost
-
-    private void jTextFieldDescKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
-            jTableMateriais.requestFocus();
-            evt.setKeyCode(java.awt.event.KeyEvent.VK_ENTER);
-
-        }
-}//GEN-LAST:event_jTextFieldDescKeyPressed
-
-    private void jTextFieldDescKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescKeyReleased
-        boolean Consulta = true;
-
-        javax.swing.table.DefaultTableModel tableResultado = (javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
-        Session sessao = HibernateUtil.getSessionFactory().openSession();
-        Transaction transacao = sessao.beginTransaction();
-
-        if(jTextFieldDesc.getText().equals("")){
-
-            Query materiais = sessao.createQuery("from Materiais m order by m.descricao, m.codmateriais");
-
-            //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
-            List listMateriais = materiais.list();
-            Iterator m = listMateriais.iterator();
-
-            tableResultado.setRowCount(0);
-            jLabelRetorno.setText("");
-
-            while(m.hasNext()){
-                 Materiais mat = (Materiais) m.next();
-
-                 tableResultado.addRow(new Object[] {mat.getCodmateriais(), mat.getDescricao(), mat.getUnidade(), mat.getQtdestoque(), mat.getQtdminima(), moeda(mat.getValor()), mat.getFornecedor(), sfd.format(mat.getDatacadastro()), ""});
-                 System.out.println("Desc: "+ mat.getDescricao());
-                 jTableMateriais.updateUI();
-            }
-
-
-            //tableResultado.setRowCount(0);
-            Consulta = false;
-            //return;
-        }else{
-            String descricaoMaterial = jTextFieldDesc.getText();
-
-            //mostraTabelaVazia();
-           
-            //Query consultaOrca = sessao.createQuery("from Orcamentos as o where o.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"' ");
-
-            Query materiais = sessao.createQuery("from Materiais m where m.descricao LIKE '"+descricaoMaterial+"%' order by m.descricao, m.codmateriais");
-
-            //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
-            List listMateriais = materiais.list();
-            Iterator m = listMateriais.iterator();
-
-            tableResultado.setRowCount(0);
-            jLabelRetorno.setText("");
-
-            while(m.hasNext()){
-                 Materiais mat = (Materiais) m.next();
-
-                 tableResultado.addRow(new Object[] {mat.getCodmateriais(), mat.getDescricao(), mat.getUnidade(), mat.getQtdestoque(), mat.getQtdminima(), moeda(mat.getValor()), mat.getFornecedor(), sfd.format(mat.getDatacadastro()), ""});
-                 System.out.println("Desc: "+ mat.getDescricao());
-                 jTableMateriais.updateUI();
-            }
-
-            if (listMateriais.isEmpty()) {
-
-                jLabelRetorno.setText("Nenhum material encontrado com está descrição.!!");
-                jTextFieldDesc.requestFocus();
-                return ;
-            }
-
-            transacao.commit();
-            sessao.close();
-
-
-        }
-}//GEN-LAST:event_jTextFieldDescKeyReleased
-
-    private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
-            Session sessao =HibernateUtil.getSessionFactory().openSession();// fabricaDeSessoes.openSession();
-            Transaction transacao = sessao.beginTransaction();
-            //Query consultaOrca = sessao.createQuery("from Orcamentos as o where o.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"' ");
-
-            //Query consultaOrca = sessao.createQuery("select o, mo, c from Orcamentos as o, MateriaisOrcamentos as mo, Clientes as c where  o.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"' and mo.orcamentos = o.codorcamentos and o.clientes = c.codcliente order by o.codorcamentos, mo.codmateriais ");
-
-            Query materiais = sessao.createQuery("from Materiais m order by m.descricao, m.codmateriais");
-
-            //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
-            List listMateriais = materiais.list();
-            //List materiais = consultaMat.list();
-            //System.out.println("foram encontradas "+orcamentos.size()+" orcamentos");
-            Iterator m = listMateriais.iterator();
-
-            javax.swing.table.DefaultTableModel tableResultado =(javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
-            tableResultado.setRowCount(0);
-            jLabelRetorno.setText("");
-
-
-            while(m.hasNext()){
-                 Materiais mat = (Materiais) m.next();
-
-                 tableResultado.addRow(new Object[] {mat.getCodmateriais(), mat.getDescricao(), mat.getUnidade(), mat.getQtdestoque(), mat.getQtdminima(), moeda(mat.getValor()), mat.getFornecedor(), sfd.format(mat.getDatacadastro()), ""});
-              
-            }
-
-            transacao.commit();
-            sessao.close();
-}//GEN-LAST:event_jButtonAtualizarActionPerformed
-
-    private void jTableMateriaisKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableMateriaisKeyReleased
-        int rows = jTableMateriais.getSelectedRow();
+    private void jTableCaixaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableCaixaKeyReleased
+        int rows = jTableCaixa.getSelectedRow();
 
         // jTableMercadoria.getSelectionModel().addListSelectionListener(
         //            new ListSelectionListener(){
@@ -906,7 +502,7 @@ public class Saida extends javax.swing.JInternalFrame {
 
         if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_DOWN || evt.getKeyCode() == java.awt.event.KeyEvent.VK_UP){
 
-            DefaultTableModel modelo = (DefaultTableModel) jTableMateriais.getModel();
+            DefaultTableModel modelo = (DefaultTableModel) jTableCaixa.getModel();
 
             int estoque = (Integer) modelo.getValueAt(rows, 3);
             int minimo = (Integer) modelo.getValueAt(rows, 4);
@@ -919,22 +515,22 @@ public class Saida extends javax.swing.JInternalFrame {
 
             if(estoque <= minimo){
                 //System.out.println("eh menor");
-                jTableMateriais.setSelectionForeground(Color.RED);
+                jTableCaixa.setSelectionForeground(Color.RED);
             }else{
-                jTableMateriais.setSelectionForeground(Color.BLACK);
+                jTableCaixa.setSelectionForeground(Color.BLACK);
             }
         }
-}//GEN-LAST:event_jTableMateriaisKeyReleased
+}//GEN-LAST:event_jTableCaixaKeyReleased
 
-    private void jTableMateriaisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableMateriaisKeyPressed
+    private void jTableCaixaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableCaixaKeyPressed
         //    if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER){
         //        jTableResultado.getSelectedRow();
         //        evt.consume();
         //    }
         if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_F9){
             try {
-                DefaultTableModel modelo = (DefaultTableModel) jTableMateriais.getModel();
-                String cod = (String) modelo.getValueAt(jTableMateriais.getSelectedRow(), 0);
+                DefaultTableModel modelo = (DefaultTableModel) jTableCaixa.getModel();
+                String cod = (String) modelo.getValueAt(jTableCaixa.getSelectedRow(), 0);
                 new TelaAnalitica(inicial, true, cod).setVisible(true);
             } catch (Exception ex) {
                 Logger.getLogger(Saida.class.getName()).log(Level.SEVERE, null, ex);
@@ -959,15 +555,15 @@ public class Saida extends javax.swing.JInternalFrame {
 
 
 
-                DefaultTableModel modelo = (DefaultTableModel) jTableMateriais.getModel();
+                DefaultTableModel modelo = (DefaultTableModel) jTableCaixa.getModel();
 
                 //            Point p = evt.getPoint();
                 //            int col1 = jTableResultado.columnAtPoint(p);
                 //            int col1 = jTableResultado.columnAtPoint(p);
                 //            System.out.printf("row: %d    col: %d\n", row1, col1);
-                int[] l = jTableMateriais.getSelectedRows();
-                int cow = jTableMateriais.getSelectedColumn();
-                int row = jTableMateriais.getSelectedRow();
+                int[] l = jTableCaixa.getSelectedRows();
+                int cow = jTableCaixa.getSelectedColumn();
+                int row = jTableCaixa.getSelectedRow();
 
                 int estoque = 0;
                 int minimo = 0;
@@ -988,7 +584,7 @@ public class Saida extends javax.swing.JInternalFrame {
                     qtd = (Integer) modelo.getValueAt(row, 3);
                     System.out.println("dimdim "+dinheiro);
                     System.out.println("QTD Venda " + qtd);
-                    System.out.println("table " + jTableMateriais.getSelectedRowCount() + " - " + row);
+                    System.out.println("table " + jTableCaixa.getSelectedRowCount() + " - " + row);
                 }
 
                     cod = (String) modelo.getValueAt(row, 0);
@@ -1016,7 +612,7 @@ public class Saida extends javax.swing.JInternalFrame {
                 Transaction transacao = sessao.beginTransaction();
                 modelo.setValueAt(ConfirmaSaida.qtdVenda, row, 3);
                 modelo.setValueAt(moeda(ConfirmaSaida.valor), row, 5);
-                jTableMateriais.updateUI();
+                jTableCaixa.updateUI();
                 LN.entity.HistoricoEntrada historicoEntrada = new LN.entity.HistoricoEntrada(getNextvalMateriais(), Integer.parseInt(cod), desc, ConfirmaSaida.quantidade, ConfirmaSaida.valor, new Date(), ConfirmaSaida.status, ConfirmaSaida.total, Inicial.USER);
                 Materiais mat = new Materiais(cod, desc, unidade, ConfirmaSaida.qtdVenda, minimo, ConfirmaSaida.valor, fornecedor, data);
 
@@ -1032,13 +628,13 @@ public class Saida extends javax.swing.JInternalFrame {
                 Logger.getLogger(Saida.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Erro classe não encontrada: "+ "\nCausa: "+ex.getCause());
             }
-            jTableMateriais.getSelectedRow();
+            jTableCaixa.getSelectedRow();
             evt.consume();
 
         }
-}//GEN-LAST:event_jTableMateriaisKeyPressed
+}//GEN-LAST:event_jTableCaixaKeyPressed
 
-    private void jTableMateriaisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMateriaisMouseClicked
+    private void jTableCaixaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCaixaMouseClicked
         String cod = null;
         String desc = null;
         String unidade = null;
@@ -1050,16 +646,16 @@ public class Saida extends javax.swing.JInternalFrame {
         DecimalFormat dff = (DecimalFormat) DecimalFormat.getInstance();
 
         if(evt.getClickCount() == 1){
-            DefaultTableModel modelo = (DefaultTableModel) jTableMateriais.getModel();
-            int row = jTableMateriais.getSelectedRow();
+            DefaultTableModel modelo = (DefaultTableModel) jTableCaixa.getModel();
+            int row = jTableCaixa.getSelectedRow();
             int estoque = (Integer) modelo.getValueAt(row, 3);
             int minimo = (Integer) modelo.getValueAt(row,4);
             //System.out.println("EST: "+ estoque + "   MIN: " + minimo);
             if(estoque <= minimo){
                 //System.out.println("eh menor");
-                jTableMateriais.setSelectionForeground(Color.RED);
+                jTableCaixa.setSelectionForeground(Color.RED);
             }else{
-                jTableMateriais.setSelectionForeground(Color.BLACK);
+                jTableCaixa.setSelectionForeground(Color.BLACK);
             }
 
         }
@@ -1067,11 +663,11 @@ public class Saida extends javax.swing.JInternalFrame {
         if (evt.getClickCount() == 2) {
             try {
 
-                DefaultTableModel modelo = (DefaultTableModel) jTableMateriais.getModel();
+                DefaultTableModel modelo = (DefaultTableModel) jTableCaixa.getModel();
 
-                int[] l = jTableMateriais.getSelectedRows();
-                int cow = jTableMateriais.getSelectedColumn();
-                int row = jTableMateriais.getSelectedRow();
+                int[] l = jTableCaixa.getSelectedRows();
+                int cow = jTableCaixa.getSelectedColumn();
+                int row = jTableCaixa.getSelectedRow();
 
                 int estoque = 0;
                 int minimo = 0;
@@ -1092,7 +688,7 @@ public class Saida extends javax.swing.JInternalFrame {
                     qtd = (Integer) modelo.getValueAt(row, 3);
                     System.out.println("dimdim "+dinheiro);
                     System.out.println("QTD Venda " + qtd);
-                    System.out.println("table " + jTableMateriais.getSelectedRowCount() + " - " + row);
+                    System.out.println("table " + jTableCaixa.getSelectedRowCount() + " - " + row);
                 }
 
                     cod = (String) modelo.getValueAt(row, 0);
@@ -1123,7 +719,7 @@ public class Saida extends javax.swing.JInternalFrame {
 
                 modelo.setValueAt(ConfirmaSaida.qtdVenda, row, 3);
                 modelo.setValueAt(moeda(ConfirmaSaida.valor), row, 5);
-                jTableMateriais.updateUI();
+                jTableCaixa.updateUI();
                 LN.entity.HistoricoEntrada historicoEntrada = new LN.entity.HistoricoEntrada(getNextvalMateriais(), Integer.parseInt(cod), desc, ConfirmaSaida.quantidade, ConfirmaSaida.valor, new Date(), ConfirmaSaida.status, ConfirmaSaida.total, Inicial.USER);
                 Materiais mat = new Materiais(cod, desc, unidade, ConfirmaSaida.qtdVenda, minimo, ConfirmaSaida.valor, fornecedor, data);
 
@@ -1147,7 +743,7 @@ public class Saida extends javax.swing.JInternalFrame {
             }
 
         }
-}//GEN-LAST:event_jTableMateriaisMouseClicked
+}//GEN-LAST:event_jTableCaixaMouseClicked
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         //mostraTabelaVazia();
@@ -1187,100 +783,16 @@ public class Saida extends javax.swing.JInternalFrame {
 //                 column.setCellRenderer(tcr);
             //}
 
-            Query materiais = sessao.createQuery("from Materiais m order by m.descricao, m.codmateriais");
-            List listMateriais = materiais.list();
+            ///Query materiais = sessao.createQuery("from Materiais m order by m.descricao, m.codmateriais");
+            ///List listMateriais = materiais.list();
 
-            mostraLista(listMateriais);
+            ///mostraLista(listMateriais);
 
             transacao.commit();
             sessao.close();
 
             System.out.println("Open!!!");
     }//GEN-LAST:event_formInternalFrameOpened
-
-    private void jTextFieldFornecedorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFornecedorFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldFornecedorFocusGained
-
-    private void jTextFieldFornecedorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldFornecedorFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldFornecedorFocusLost
-
-    private void jTextFieldFornecedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFornecedorKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
-            jTableMateriais.requestFocus();
-            evt.setKeyCode(java.awt.event.KeyEvent.VK_ENTER);
-
-        }
-    }//GEN-LAST:event_jTextFieldFornecedorKeyPressed
-
-    private void jTextFieldFornecedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFornecedorKeyReleased
-         boolean Consulta = true;
-
-        javax.swing.table.DefaultTableModel tableResultado = (javax.swing.table.DefaultTableModel)jTableMateriais.getModel();
-
-        Session sessao = HibernateUtil.getSessionFactory().openSession();
-        Transaction transacao = sessao.beginTransaction();
-
-        if(jTextFieldFornecedor.getText().equals("")){
-
-            Query materiais = sessao.createQuery("from Materiais m order by m.descricao, m.codmateriais");
-
-            //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
-            List listMateriais = materiais.list();
-            Iterator m = listMateriais.iterator();
-
-            tableResultado.setRowCount(0);
-            jLabelRetorno.setText("");
-
-            while(m.hasNext()){
-                 Materiais mat = (Materiais) m.next();
-
-                 tableResultado.addRow(new Object[] {mat.getCodmateriais(), mat.getDescricao(), mat.getUnidade(), mat.getQtdestoque(), mat.getQtdminima(), moeda(mat.getValor()), mat.getFornecedor(), sfd.format(mat.getDatacadastro()), ""});
-                 System.out.println("Desc: "+ mat.getDescricao());
-                 jTableMateriais.updateUI();
-            }
-
-            //tableResultado.setRowCount(0);
-            Consulta = false;
-            //return;
-        }else{
-            String fornecedorMaterial = jTextFieldFornecedor.getText();
-
-            //mostraTabelaVazia();
-            
-            //Query consultaOrca = sessao.createQuery("from Orcamentos as o where o.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"' ");
-
-            Query materiais = sessao.createQuery("from Materiais m where m.fornecedor LIKE '"+fornecedorMaterial+"%' order by m.descricao, m.codmateriais");
-
-            //Query consultaMat = sessao.createQuery("from MateriaisOrcamentos as mo where mo.codorcamentos = '"+jListOrcamento.getSelectedValue().toString()+"'");
-            List listMateriais = materiais.list();
-            Iterator m = listMateriais.iterator();
-
-            tableResultado.setRowCount(0);
-            jLabelRetorno.setText("");
-            
-            while(m.hasNext()){
-                 Materiais mat = (Materiais) m.next();
-
-                 tableResultado.addRow(new Object[] {mat.getCodmateriais(), mat.getDescricao(), mat.getUnidade(), mat.getQtdestoque(), mat.getQtdminima(), moeda(mat.getValor()), mat.getFornecedor(), sfd.format(mat.getDatacadastro()), ""});
-                 System.out.println("Desc: "+ mat.getDescricao());
-                 jTableMateriais.updateUI();
-            }
-
-            if (listMateriais.isEmpty()) {
-
-                jLabelRetorno.setText("Nenhum material encontrado com este fornecedor.!!");
-                jTextFieldFornecedor.requestFocus();
-                return ;
-            }
-
-            transacao.commit();
-            sessao.close();
-
-
-        }
-    }//GEN-LAST:event_jTextFieldFornecedorKeyReleased
 
     private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
             Session sessao = HibernateUtil.getSessionFactory().openSession();// fabricaDeSessoes.openSession();
@@ -1294,14 +806,41 @@ public class Saida extends javax.swing.JInternalFrame {
             transacao.commit();
             sessao.close();
 
-            jTableMateriais.updateUI();
-            jLabelRetorno.setText("");
-            jTextFieldDesc.setText("");
-            jTextFieldCod.setText("");
-            jTextFieldFornecedor.setText("");
+            jTableCaixa.updateUI();
+            //jLabelRetorno.setText("");
+            //jTextFieldDesc.setText("");
+            //jTextFieldCod.setText("");
+            //jTextFieldFornecedor.setText("");
 
             System.out.println("Closed!!!");
     }//GEN-LAST:event_formInternalFrameClosed
+
+    private void jTextFieldCodProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodProdutoKeyPressed
+        Session sessao = HibernateUtil.getSessionFactory().openSession();// fabricaDeSessoes.openSession();
+        Transaction transacao = sessao.beginTransaction();
+
+        javax.swing.table.DefaultTableModel tableResultado = (javax.swing.table.DefaultTableModel)jTableCaixa.getModel();
+
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+
+            Query materiais = sessao.createQuery("from Materiais m where m.codmateriais like '"+jTextFieldCodProduto.getText()+"%' order by m.descricao, m.codmateriais");
+            List listMateriais = materiais.list();
+            Iterator m = listMateriais.iterator();
+            Materiais mat = (Materiais) m.next();
+            double total =0;
+            total = mat.getValor() * Double.valueOf(jTextFieldQuant.getText()).doubleValue();
+            tableResultado.addRow(new Object[] {mat.getCodmateriais(), mat.getDescricao(), mat.getUnidade(), jTextFieldQuant.getText(), moeda(mat.getValor()), moeda(total)});
+            //mostraLista(listMateriais);
+
+            if(listMateriais.isEmpty()){
+                //jLabelRetorno.setText("Produto nâo cadastro!!!");
+            }
+
+        }
+
+        transacao.commit();
+        sessao.close();
+    }//GEN-LAST:event_jTextFieldCodProdutoKeyPressed
 
 public int getNextvalMateriais(){
 
@@ -1322,36 +861,16 @@ public int getNextvalMateriais(){
            return nextVal;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAtualizar;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelRetorno;
-    private javax.swing.JLabel jLabelTotal;
     private javax.swing.JLabel jLabelTroco;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableMateriais;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextFieldCod;
-    private javax.swing.JTextField jTextFieldDesc;
-    private javax.swing.JTextField jTextFieldFornecedor;
-    private javax.swing.JTextField jTextFieldValorRecebido;
+    private javax.swing.JTable jTableCaixa;
+    private javax.swing.JTextField jTextFieldCodProduto;
+    private javax.swing.JTextField jTextFieldQuant;
     // End of variables declaration//GEN-END:variables
 
 }
